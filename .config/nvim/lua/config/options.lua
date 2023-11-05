@@ -21,19 +21,17 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.termguicolors = true
-
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-vim.opt.timeoutlen = 300
+--vim.opt.timeoutlen = 300
 
 vim.opt.colorcolumn = "120"
 
-vim.o.formatoptions = "jcroqlnt"
-vim.o.shortmess = "filnxtToOFWIcC"
+--vim.o.formatoptions = "jcroqlnt"
+--vim.o.shortmess = "filnxtToOFWIcC"
 
 vim.opt.splitbelow = true
 vim.opt.splitkeep = "screen"

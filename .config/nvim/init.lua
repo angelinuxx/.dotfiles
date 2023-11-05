@@ -1,5 +1,6 @@
 require "config.options"
 require "config.lazy"
+require "config.theme"
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
@@ -8,5 +9,3 @@ vim.api.nvim_create_autocmd("User", {
     require "config.keymaps"
   end,
 })
-
-

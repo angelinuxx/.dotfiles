@@ -1,4 +1,10 @@
 return {
+  { 
+    'rose-pine/neovim', 
+    name = 'rose-pine', 
+    priority = 1000, 
+    lazy = false,
+  },
   {
     "folke/styler.nvim",
     event = "VeryLazy",
@@ -11,11 +17,9 @@ return {
       }
     end,
   },
-  { 'rose-pine/neovim', name = 'rose-pine', priority = 1000, lazy = false },
   {
     "ellisonleao/gruvbox.nvim",
     lazy = false,
-    priority = 1000,
     config = function()
       require("gruvbox").setup()
     end,

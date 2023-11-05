@@ -1,4 +1,5 @@
-local M = {
+return {}
+--[[local M = {
   "folke/noice.nvim",
   event = "VeryLazy",
   enabled = false, -- disable for now
@@ -25,3 +26,4 @@ function M.config()
 end
 
 return M
+--]]

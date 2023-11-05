@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Configure lazy.nvim
 require("lazy").setup("plugins", {
   defaults = { lazy = true, version = nil },
-  install = { missing = true, colorscheme = { "rose-pine" } },
+  install = { missing = true, colorscheme = { 'rose-pine' } },
   checker = { enabled = true },
   performance = {
     rtp = {
@@ -26,10 +26,11 @@ require("lazy").setup("plugins", {
 --        "netrwPlugin",
         "tarPlugin",
         "tohtml",
---        "tutor",
+        "tutor",
         "zipPlugin",
       },
     },
   },
 })
+vim.loader.enable()
 vim.keymap.set("n", "<leader>z", "<cmd>:Lazy<cr>", { desc = "Plugin Manager" })

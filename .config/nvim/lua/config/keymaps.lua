@@ -18,7 +18,7 @@ keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- keymap("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/angelinuxx/packer.lua<CR>");
-keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+-- keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- source current file
 keymap("n", "<leader><leader>", function()
@@ -66,7 +66,7 @@ keymap("n", "<leader>Y", [["+Y]]) -- yanks a line to system clipboard
 keymap({"n", "v"}, "<leader>d", [["_d]])
 
 -- Move Lines
--- move highlighted up 
+-- move highlighted up
 keymap("n", "<C-J>", ":m .+1<CR>==")
 keymap("v", "<C-J>", ":m '>+1<CR>gv=gv")
 keymap("i", "<C-J>", "<Esc>:m .+1<CR>==gi")

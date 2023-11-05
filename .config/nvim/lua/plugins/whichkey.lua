@@ -6,7 +6,7 @@ return {
     wk.setup {
       show_help = false,
       plugins = { spelling = true },
-      key_labels = { ["<leader>"] = "SPC" },
+      key_labels = { ["<leader>"] = "<leader>" },
       triggers = "auto",
     }
     wk.register ({
