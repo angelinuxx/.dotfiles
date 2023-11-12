@@ -1,0 +1,78 @@
+" share clipboard with system
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" shortcuts to open/reload ideavimrc
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+set idearefactormode=keep
+set ideajoin
+set showmode
+set showcmd
+
+set guicursor=""
+
+set number
+set relativenumber
+
+set smartindent
+
+set nowrap
+
+set hlsearch
+set incsearch
+
+set scrolloff=8
+
+set updatetime=50
+
+" remap <leader> to space "
+let mapleader=" "
+
+noremap <leader>w :w<CR>
+noremap <leader>q :q<CR>
+
+nnoremap <C-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+" code format
+noremap <leader>cf :action ReformatCode<CR>
+
+
+inoremap jk <Esc>
+map <C-c> <Esc>
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Better viewing
+nnoremap n nzzzv
+nnoremap N nzzzv
+nnoremap g, g,zvzz
+nnoremap g; g;zvzz
+nnoremap J mzJ`z
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+
+vnoremap < <gv
+vnoremap > >gv
+" Better indent
+
+
+" noremap({ "n", "v" }, "<leader>y", [["+y]]) -- yanks to system clipboard
+" noremap "<leader>Y", [["+Y]]) -- yanks a line to system clipboard
+
+" delete to void register
+"noremap({ "n", "v" }, "<leader>d", [["_d]])
+
+""-- Move Lines
+""-- move highlighted up
+nnoremap <C-J> :m .+1<CR>==
+vnoremap <C-J> :m '>+1<CR>gv=gv
+inoremap <C-J> <Esc>:m .+1<CR>==gi
+
+""  move highlighted down
+nnoremap <C-K> :m .-2<CR>==
+vnoremap <C-K> :m '<-2<CR>gv=gv
+inoremap <C-K> <Esc>:m .-2<CR>==gi
