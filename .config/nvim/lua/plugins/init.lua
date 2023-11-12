@@ -1,6 +1,7 @@
 return {
   "nvim-lua/plenary.nvim",
   "MunifTanjim/nui.nvim",
+  "github/copilot.vim",
   {
     "nvim-tree/nvim-web-devicons",
     config = { default = true },
