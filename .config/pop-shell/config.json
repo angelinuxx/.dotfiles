@@ -1,0 +1,46 @@
+{
+  "float": [
+    {
+      "class": "pop-shell-example",
+      "title": "pop-shell-example"
+    },
+    {
+      "class": "1Password"
+    },
+    {
+      "class": "gnome-extensions-app"
+    },
+    {
+      "class": "org.gnome.Shell.Extensions"
+    },
+    {
+      "class": "Mailspring"
+    },
+    {
+      "class": "jetbrains-webstorm",
+      "title": "splash"
+    },
+    {
+      "class": "jetbrains-pycharm",
+      "title": "splash"
+    },
+    {
+      "class": "jetbrains-phpstorm",
+      "title": "splash"
+    },
+    {
+      "class": "Gnome-terminal",
+      "title": "Preferences – Profile “Pop”"
+    },
+    {
+      "class": "Terminator",
+      "title": "Terminator Preferences"
+    },
+    {
+      "class": "Gnome-terminal",
+      "title": "Preferences – General"
+    }
+  ],
+  "skiptaskbarhidden": [],
+  "log_on_focus": false
+}
