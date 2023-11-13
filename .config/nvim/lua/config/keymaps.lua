@@ -1,6 +1,7 @@
 local keymap = vim.keymap.set
 
-vim.g.mapleader = " "
+-- remove keymaps on space
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- open the file explorer
 keymap("n", "<leader>pv", vim.cmd.Ex)
@@ -76,15 +77,3 @@ keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
 keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
--- Lsp
-keymap("n", "<leader>f", vim.lsp.buf.format) -- format
-keymap("n", "<C-k>", "<cmd>cnext<CR>zz") -- quickfix navigation
-keymap("n", "<C-j>", "<cmd>cprev<CR>zz") -- quickfix navigation
-keymap("n", "<leader>k", "<cmd>lnext<CR>zz") -- quickfix navigation
-keymap("n", "<leader>j", "<cmd>lprev<CR>zz") -- quickfix navigation
-
--- CSI u mappings test
-keymap("n", "<Tab>", "<CMD>lua print([[ Tab is pressed ]])<CR>")
-keymap("n", "<C-i>", "<CMD>lua print([[ Ctr-i is pressed ]])<CR>")
-keymap("n", "<C-Enter>", "<CMD>lua print([[ Ctr-Enter is pressed ]])<CR>")
-keymap("n", "<C-S-p>", "<CMD>lua print([[ Ctr-Shift-P is pressed ]])<CR>")

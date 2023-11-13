@@ -17,3 +17,4 @@ return {
   },
   config = true,
 }
+

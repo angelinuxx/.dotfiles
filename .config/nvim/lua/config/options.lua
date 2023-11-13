@@ -2,69 +2,67 @@ local indent = 2
 
 vim.g.mapleader = " "
 
-vim.opt.guicursor = ""
+-- ui
+--vim.opt.guicursor = ""
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.guifont = "Caskavya Cove Nerd Font:h11"
 
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- line numbers
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- indentation
 vim.opt.tabstop = indent
 vim.opt.shiftwidth = indent
 vim.opt.expandtab = true
-
+vim.opt.smarttab = true
 vim.opt.smartindent = true
 
+-- disable line wrap
 vim.opt.wrap = false
 
+-- handle history file and disable swap file
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.history = 1000
 vim.opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+-- searching
+vim.opt.ignorecase = true -- Ignore case when searching
+vim.opt.smartcase = true -- When searching try to be smart about cases
+vim.opt.hlsearch = true -- Highlight all matches
 vim.opt.incsearch = true
+
+-- hide current mode
 vim.opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
 
+-- 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append "@-@"
 
+-- decrease timeout and update time
 vim.opt.updatetime = 50
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 300 -- this is useful to show which key after 300ms
 
+-- print limit at 120
 vim.opt.colorcolumn = "120"
 
---vim.o.formatoptions = "jcroqlnt"
---vim.o.shortmess = "filnxtToOFWIcC"
-
-vim.opt.splitbelow = true
-vim.opt.splitkeep = "screen"
-vim.opt.splitright = true
-
---vim.opt.breakindent = true
---vim.opt.cmdheight = 0
---vim.opt.completeopt = "menuone,noselect"
---vim.opt.conceallevel = 3
---vim.opt.confirm = true
---vim.opt.cursorline = true
---vim.opt.hidden = true
---vim.opt.inccommand = "nosplit"
---vim.opt.joinspaces = false
---vim.opt.laststatus = 0
---vim.opt.list = true
---vim.opt.mouse = "a"
---vim.opt.pumblend = 10
---vim.opt.pumheight = 10
---vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
---vim.opt.shiftround = true
---vim.opt.showmode = false
-
+-- improve search
 vim.opt.path:remove "/usr/include"
 vim.opt.path:append "**"
-vim.opt.wildignorecase = true
-vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignorecase = true -- ignore case when completing filenames and dirs
+vim.opt.wildmode = "longest:full,full" -- builtin completion mode
 
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- keep the text on the same screen line when opening/closing or resizing horizontal splits
+vim.opt.splitkeep = "screen"
+
+-- open new split panes to right and bottom
+vim.opt.splitright = true
+vim.opt.splitbelow = true

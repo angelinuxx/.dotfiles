@@ -1,11 +1,14 @@
 return {
   "nvim-tree/nvim-tree.lua",
+  dependencies = {
+    { "nvim-tree/nvim-web-devicons", config = { default = true } },
+  },
   cmd = { "NvimTreeToggle" },
   keys = {
     { "<leader>fe", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
+    { "<leader>pf", "<cmd>NvimTreeFindFile<CR>", desc = "Find buffer in file explorer" },
   },
   opts = {
-    --    open_on_setup = true,
     disable_netrw = false,
     hijack_netrw = true,
     hijack_cursor = true,
@@ -18,6 +21,11 @@ return {
     filters = {
       custom = { ".git" },
     },
+    tab = {
+      sync = {
+        open = true,
+      },
+    },
     sync_root_with_cwd = true,
     update_focused_file = {
       enable = true,
@@ -29,4 +37,11 @@ return {
       },
     },
   },
+  config = function(plugin)
+    local tree = require("nvim-tree")
+    tree.setup(plugin.opts)
+
+    -- change tree background color
+    vim.cmd "hi NvimTreeNormal guibg=#24212f"
+  end
 }
