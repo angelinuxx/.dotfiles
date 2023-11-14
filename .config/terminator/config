@@ -7,10 +7,10 @@
   [[default]]
     background_color = "#1f1d29"
     cursor_color = "#ffffff"
-    font = CaskaydiaCove Nerd Font 11
+    font = MesloLGS Nerd Font Propo 11
     foreground_color = "#ffffff"
+    show_titlebar = False
     palette = "#403c58:#ea6f91:#9bced7:#f1ca93:#34738e:#c3a5e6:#eabbb9:#faebd7:#6f6e85:#ea6f91:#9bced7:#f1ca93:#34738e:#c3a5e6:#eabbb9:#ffffff"
-    use_system_font = False
 [layouts]
   [[default]]
     [[[child1]]]
