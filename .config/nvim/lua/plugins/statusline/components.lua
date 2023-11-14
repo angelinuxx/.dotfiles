@@ -1,4 +1,5 @@
 local icons = require "config.icons"
+local lazy_status = require("lazy.status")
 
 return {
   spaces = {
@@ -7,6 +8,11 @@ return {
       return icons.ui.Tab .. " " .. shiftwidth
     end,
     padding = 1,
+  },
+  lazy_updates = {
+    lazy_status.has_updates,
+    cond = lazy_status.has_updates,
+    color = { fg = "#ff9e64" },
   },
   git_repo = {
     function()

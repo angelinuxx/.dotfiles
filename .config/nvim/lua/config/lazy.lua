@@ -16,7 +16,8 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins", {
   defaults = { lazy = true, version = nil },
   install = { missing = true, colorscheme = { "rose-pine" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
+  change_detection = { notify = false },
   performance = {
     rtp = {
       disabled_plugins = {
