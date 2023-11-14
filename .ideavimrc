@@ -39,6 +39,10 @@ nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 " code format
 noremap <leader>cf :action ReformatCode<CR>
 
+" idea actions remap"
+noremap <leader>ff :action SearchEverywhere<CR>
+noremap <leader>fr :action RecentFiles<CR>
+
 
 inoremap jk <Esc>
 map <C-c> <Esc>
