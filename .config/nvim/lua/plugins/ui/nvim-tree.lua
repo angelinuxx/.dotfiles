@@ -14,12 +14,13 @@ return {
     hijack_cursor = true,
     respect_buf_cwd = true,
     view = {
+      width = 35,
       number = true,
       relativenumber = true,
       centralize_selection = true,
     },
     filters = {
-      custom = { ".git" },
+      -- custom = { ".git" },
     },
     tab = {
       sync = {
@@ -34,6 +35,9 @@ return {
     actions = {
       open_file = {
         quit_on_open = false,
+        window_picker = {
+         -- enable = false, -- disable for explorer to work well with window splits
+        }
       },
     },
   },

@@ -42,7 +42,7 @@ vim.opt.incsearch = true
 -- hide current mode
 vim.opt.showmode = false -- Do not need to show the mode. We use the statusline instead.
 
--- 
+-- keep at least 8 lines from the edges
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append "@-@"

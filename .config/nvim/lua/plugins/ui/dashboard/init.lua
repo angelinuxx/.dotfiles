@@ -3,7 +3,7 @@ return {
   lazy = false,
   config = function()
     local dashboard = require "alpha.themes.dashboard"
-    dashboard.section.header.val = require("plugins.dashboard.logo")["random"]
+    dashboard.section.header.val = require("plugins.ui.dashboard.logo")["random"]
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),

@@ -46,6 +46,7 @@ keymap("v", ">", ">gv")
 keymap("x", "<leader>p", [["_dP]])
 
 -- greatest remap ever
+keymap("n", "x", [["_x]]) -- single char delete to void register
 keymap({ "n", "v" }, "<leader>y", [["+y]]) -- yanks to system clipboard
 keymap("n", "<leader>Y", [["+Y]]) -- yanks a line to system clipboard
 

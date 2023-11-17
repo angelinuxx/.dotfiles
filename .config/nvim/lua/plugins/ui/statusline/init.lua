@@ -4,14 +4,14 @@ return {
     event = "VeryLazy",
 
     config = function()
-      local components = require "plugins.statusline.components"
+      local components = require "plugins.ui.statusline.components"
 
       require("lualine").setup {
         options = {
           icons_enabled = true,
           theme = "auto",
           component_separators = {},
-          section_separators = {}, -- { left = '', right = '' },
+          section_separators = { left = '', right = '' },
           disabled_filetypes = {
             statusline = { "alpha", "lazy" },
             winbar = {
