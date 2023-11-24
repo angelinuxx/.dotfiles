@@ -8,10 +8,10 @@ return {
   },
   config = function()
     -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
+    local lspconfig = require "lspconfig"
 
     -- import cmp-nvim-lsp plugin
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
     local keymap = vim.keymap -- for conciseness
 
@@ -72,45 +72,50 @@ return {
     end
 
     -- configure html server
-    lspconfig["html"].setup({
+    lspconfig["html"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
 
     -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
+    lspconfig["tsserver"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
 
     -- configure css server
-    lspconfig["cssls"].setup({
+    lspconfig["cssls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
 
     -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
+    lspconfig["tailwindcss"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
-
+    }
 
     -- configure emmet language server
-    lspconfig["emmet_ls"].setup({
+    lspconfig["emmet_ls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
+    }
 
     -- configure python server
-    lspconfig["pyright"].setup({
+    lspconfig["pyright"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    })
+    }
+
+    -- configure python server
+    lspconfig["phpactor"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
 
     -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
+    lspconfig["lua_ls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = { -- custom settings for lua
@@ -122,12 +127,12 @@ return {
           workspace = {
             -- make language server aware of runtime files
             library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+              [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+              [vim.fn.stdpath "config" .. "/lua"] = true,
             },
           },
         },
       },
-    })
+    }
   end,
 }

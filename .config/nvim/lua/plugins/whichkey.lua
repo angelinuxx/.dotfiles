@@ -1,6 +1,22 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 500
+  end,
+  config = function()
+    local wk = require "which-key"
+    wk.register {
+      ["<leader>f"] = { name = "+ Find" },
+      ["<leader>s"] = { name = "+ Splits" },
+      ["<leader>e"] = { name = "+ File explorer" },
+      ["<leader>c"] = { name = "+ Code" },
+      -- ["<leader>cb"] = { name = "+ Dap" },
+      ["<leader>h"] = { name = "+ Harpoon" },
+      ["<leader>g"] = { name = "+ Git" },
+    }
+  end,
   -- config = function()
   --   local wk = require "which-key"
   --   wk.setup {

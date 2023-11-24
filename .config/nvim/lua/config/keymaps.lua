@@ -3,12 +3,6 @@ local keymap = vim.keymap.set
 -- remove keymaps on space
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
--- open the file explorer
-keymap("n", "<leader>pv", vim.cmd.Ex)
-
--- This is going to get me cancelled:
-keymap("i", "<C-c>", "<Esc>")
-
 keymap("n", "Q", "<nop>")
 
 -- add x perm to current file
@@ -19,14 +13,12 @@ keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
-keymap("n", "J", "mzJ`z") -- move the line below to current line keeping the cursor at line begin
 keymap("n", "<C-u>", "<C-u>zz") -- move half page up keeping cursor in the middle
 keymap("n", "<C-d>", "<C-d>zz") -- move half page down keeping cursor in the middle
 
 -- better escape using jk in insert and terminal mode
 keymap("i", "jk", "<ESC>")
 keymap("t", "jk", "<C-\\><C-n>")
-
 
 -- keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
@@ -74,4 +66,3 @@ keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
 keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
 keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
-

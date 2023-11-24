@@ -49,7 +49,6 @@ vim.opt.isfname:append "@-@"
 
 -- decrease timeout and update time
 vim.opt.updatetime = 50
-vim.opt.timeoutlen = 600 -- this is useful to show which key after 300ms
 
 -- print limit at 120
 vim.opt.colorcolumn = "120"

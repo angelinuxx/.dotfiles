@@ -5,8 +5,8 @@ return {
   },
   cmd = { "NvimTreeToggle" },
   keys = {
-    { "<leader>fe", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
-    { "<leader>pf", "<cmd>NvimTreeFindFile<CR>", desc = "Find buffer in file explorer" },
+    { "<leader>et", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
+    { "<leader>ep", "<cmd>NvimTreeFindFile<CR>", desc = "Find buffer in file explorer" },
   },
   opts = {
     disable_netrw = false,
@@ -36,16 +36,16 @@ return {
       open_file = {
         quit_on_open = false,
         window_picker = {
-         -- enable = false, -- disable for explorer to work well with window splits
-        }
+          -- enable = false, -- disable for explorer to work well with window splits
+        },
       },
     },
   },
   config = function(plugin)
-    local tree = require("nvim-tree")
+    local tree = require "nvim-tree"
     tree.setup(plugin.opts)
 
     -- change tree background color
     vim.cmd "hi NvimTreeNormal guibg=#24212f"
-  end
+  end,
 }
