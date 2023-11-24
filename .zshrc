@@ -114,17 +114,12 @@ alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias python=python3
 alias vim=nvim
 alias vi=nvim
-alias cdsbam="cd ~/Sbam/Workspace/app"
 . $HOME/.config/zsh/aliases 
 
 # Additional $PATH variables
 path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin')
 
 export PATH
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
-
 
 # Load nvm and nvm completion
 export NVM_DIR="$HOME/.nvm"
@@ -158,5 +153,25 @@ load-nvmrc
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
+# present a list of tmux sessions to choose from
+function tm() {
+    select sel in $(tmux ls -F '#S'); do
+        break;
+    done
+
+    if [ -z "$sel" ]
+    then
+        echo "You didn't select an appropriate choice"
+    else
+        tmux attach -t "$sel"
+    fi
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Load zoxide
+eval "$(zoxide init zsh)"
+
+# Load abbrevation feature
+. $HOME/.config/zsh/abbreviations 
