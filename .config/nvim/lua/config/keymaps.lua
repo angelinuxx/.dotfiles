@@ -55,16 +55,19 @@ keymap({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Move Lines
 -- move highlighted up
-keymap("n", "<C-J>", ":m .+1<CR>==")
-keymap("v", "<C-J>", ":m '>+1<CR>gv=gv")
-keymap("i", "<C-J>", "<Esc>:m .+1<CR>==gi")
+--keymap("n", "<C-J>", ":m .+1<CR>==")
+--keymap("v", "<C-J>", ":m '>+1<CR>gv=gv")
+--keymap("i", "<C-J>", "<Esc>:m .+1<CR>==gi")
 -- move highlighted down
-keymap("n", "<C-K>", ":m .-2<CR>==")
-keymap("v", "<C-K>", ":m '<-2<CR>gv=gv")
-keymap("i", "<C-K>", "<Esc>:m .-2<CR>==gi")
+-- keymap("n", "<C-K>", ":m .-2<CR>==")
+-- keymap("v", "<C-K>", ":m '<-2<CR>gv=gv")
+-- keymap("i", "<C-K>", "<Esc>:m .-2<CR>==gi")
 
--- todo remap split windows
-
+-- remap split windows
+keymap("n", "<leader>sv", "<C-w>v") -- split vertically
+keymap("n", "<leader>sh", "<C-w>s") -- split horizontally
+keymap("n", "<leader>se", "<C-w>=") -- make split windows equal width
+keymap("n", "<leader>sx", ":close<CR>") -- close current split
 
 -- Resize window using <shift> arrow keys
 keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
