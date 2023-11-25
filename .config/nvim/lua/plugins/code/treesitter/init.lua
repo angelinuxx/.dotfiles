@@ -1,4 +1,4 @@
-local text_objects = require('plugins.code.treesitter.text-objects')
+local text_objects = require "plugins.code.treesitter.text-objects"
 
 return {
   {
@@ -11,10 +11,10 @@ return {
     },
     config = function()
       -- import nvim-treesitter plugin
-      local treesitter = require("nvim-treesitter.configs")
+      local treesitter = require "nvim-treesitter.configs"
 
       -- configure treesitter
-      treesitter.setup({ -- enable syntax highlighting
+      treesitter.setup { -- enable syntax highlighting
         highlight = {
           enable = true,
         },
@@ -47,7 +47,7 @@ return {
           "regex",
           "php",
           "phpdoc",
-          "sql"
+          "sql",
         },
         incremental_selection = {
           enable = true,
@@ -63,8 +63,8 @@ return {
           enable = true,
           enable_autocmd = false,
         },
-      })
-    end, 
-},
-text_objects
+      }
+    end,
+  },
+  text_objects,
 }
