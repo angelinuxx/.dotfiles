@@ -19,5 +19,5 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
-  -- todo: add plugin for git blame
+  -- todo: add for git blame
 }

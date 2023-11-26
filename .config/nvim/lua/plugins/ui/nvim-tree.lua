@@ -5,8 +5,8 @@ return {
   },
   cmd = { "NvimTreeToggle" },
   keys = {
-    { "<leader>et", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
-    { "<leader>ep", "<cmd>NvimTreeFindFile<CR>", desc = "Find buffer in file explorer" },
+    { "<leader>et", "<cmd>NvimTreeToggle<cr>", desc = "Toggle File Explorer" },
+    { "<leader>ep", "<cmd>NvimTreeFindFile<CR>", desc = "Point buffer in File Explorer" },
   },
   opts = {
     disable_netrw = false,

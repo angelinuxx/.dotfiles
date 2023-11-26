@@ -1,4 +1,4 @@
-local text_objects = require "plugins.code.treesitter.text-objects"
+-- local text_objects = require "plugins.code.treesitter.text-objects"
 
 return {
   {
@@ -6,7 +6,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
     },
     config = function()
@@ -15,6 +15,7 @@ return {
 
       -- configure treesitter
       treesitter.setup { -- enable syntax highlighting
+        sync_install = false,
         highlight = {
           enable = true,
         },
@@ -49,22 +50,21 @@ return {
           "phpdoc",
           "sql",
         },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = false,
-            node_decremental = "<bs>",
-          },
-        },
-        -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
-        },
+        -- incremental_selection = {
+        --   enable = true,
+        --   keymaps = {
+        --     init_selection = "<C-space>",
+        --     node_incremental = "<C-space>",
+        --     scope_incremental = false,
+        --     node_decremental = "<bs>",
+        --   },
+        -- },
+        -- -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
+        -- context_commentstring = {
+        --   enable = true,
+        --   enable_autocmd = false,
+        -- },
       }
     end,
   },
-  text_objects,
 }

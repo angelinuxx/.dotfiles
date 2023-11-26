@@ -7,10 +7,10 @@ return {
   },
   lazy = false,
   config = function()
-    local telescope = require("telescope")
-    local actions = require("telescope.actions")
+    local telescope = require "telescope"
+    local actions = require "telescope.actions"
 
-    telescope.setup({
+    telescope.setup {
       defaults = {
         path_display = { "truncate" },
         sorting_strategy = "ascending",
@@ -19,13 +19,13 @@ return {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
           },
         },
       },
-    })
+    }
 
-    telescope.load_extension("fzf")
+    telescope.load_extension "fzf"
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
@@ -38,4 +38,3 @@ return {
     keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
   end,
 }
-

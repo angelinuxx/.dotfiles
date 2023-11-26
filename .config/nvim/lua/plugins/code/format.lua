@@ -3,9 +3,11 @@ return {
   lazy = true,
   event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
   config = function()
-    local conform = require("conform")
+    local conform = require "conform"
 
-    conform.setup({
+    conform.setup {
+      log_level = vim.log.levels.DEBUG,
+      notify_on_error = true,
       formatters_by_ft = {
         javascript = { "prettier" },
         typescript = { "prettier" },
@@ -20,20 +22,21 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        php = { "pint", "blade-formatter" },
       },
       format_on_save = {
         lsp_fallback = true,
         async = false,
         timeout_ms = 1000,
       },
-    })
+    }
 
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-      conform.format({
+      conform.format {
         lsp_fallback = true,
         async = false,
         timeout_ms = 1000,
-      })
+      }
     end, { desc = "Format file or range (in visual mode)" })
   end,
 }

@@ -1,4 +1,4 @@
-local indent = 2
+local indent = 4
 
 vim.g.mapleader = " "
 

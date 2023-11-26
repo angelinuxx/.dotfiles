@@ -7,15 +7,18 @@ return {
   end,
   config = function()
     local wk = require "which-key"
-    wk.register {
-      ["<leader>f"] = { name = "+ Find" },
-      ["<leader>s"] = { name = "+ Splits" },
-      ["<leader>e"] = { name = "+ File explorer" },
-      ["<leader>c"] = { name = "+ Code" },
-      -- ["<leader>cb"] = { name = "+ Dap" },
-      ["<leader>h"] = { name = "+ Harpoon" },
-      ["<leader>g"] = { name = "+ Git" },
+    wk.setup {
+      key_labels = { ["<leader>"] = "<leader>" },
     }
+    wk.register({
+      f = { name = "+ Find" },
+      s = { name = "+ Splits" },
+      e = { name = "+ File explorer" },
+      c = { name = "+ Code" },
+      -- d = { name = "+ Dap" },
+      h = { name = "+ Harpoon" },
+      g = { name = "+ Git" },
+    }, { prefix = "<leader>" })
   end,
   -- config = function()
   --   local wk = require "which-key"

@@ -1,7 +1,7 @@
 local keymap = vim.keymap.set
 
 -- remove keymaps on space
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 keymap("n", "Q", "<nop>")
 
