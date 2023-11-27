@@ -20,7 +20,8 @@ return {
       centralize_selection = true,
     },
     filters = {
-      -- custom = { ".git" },
+      custom = { "^.git$" },
+      git_ignored = false,
     },
     tab = {
       sync = {

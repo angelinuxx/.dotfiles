@@ -8,6 +8,9 @@ keymap("n", "Q", "<nop>")
 -- add x perm to current file
 --keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- disable search highlight
+keymap("n", "<leader>nh", ":nohlsearch<CR>")
+
 -- Better viewing
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")

@@ -6,7 +6,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
-      -- "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
     },
     config = function()
@@ -47,6 +47,7 @@ return {
           "python",
           "regex",
           "php",
+          -- "blade",
           "phpdoc",
           "sql",
         },
@@ -65,6 +66,17 @@ return {
         --   enable_autocmd = false,
         -- },
       }
+
+      -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      -- parser_config.blade = {
+      --   install_info = {
+      --     url = "https://github.com/EmranMR/tree-sitter-blade",
+      --     files = { "src/parser.c" },
+      --     branch = "main",
+      --   },
+      --   filetype = "blade",
+      -- }
     end,
   },
+  -- text_objects,
 }

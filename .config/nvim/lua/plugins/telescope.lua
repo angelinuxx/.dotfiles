@@ -15,6 +15,9 @@ return {
         path_display = { "truncate" },
         sorting_strategy = "ascending",
         layout_config = { prompt_position = "top" },
+        find_files = {
+          hidden = true,
+        },
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result

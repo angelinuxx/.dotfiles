@@ -22,7 +22,8 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
-        php = { "pint", "blade-formatter" },
+        php = { "pint" },
+        blade = { "blade-formatter" },
       },
       format_on_save = {
         lsp_fallback = true,
