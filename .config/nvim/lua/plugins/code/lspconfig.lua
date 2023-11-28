@@ -83,6 +83,12 @@ return {
       on_attach = on_attach,
     }
 
+    -- configure angular server
+    lspconfig["angularls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
     -- configure css server
     lspconfig["cssls"].setup {
       capabilities = capabilities,
@@ -108,8 +114,13 @@ return {
       on_attach = on_attach,
     }
 
-    -- configure python server
-    lspconfig["phpactor"].setup {
+    -- configure php server
+    -- lspconfig["phpactor"].setup {
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    -- }
+    -- intelephense is the best in class Laravel development (even if I prefer phpactor as a server)
+    lspconfig["intelephense"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }

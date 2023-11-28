@@ -4,6 +4,8 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-tree/nvim-web-devicons",
+    -- "nvim-telescope/telescope-project.nvim",
+    "cljoly/telescope-repo.nvim",
   },
   lazy = false,
   config = function()
@@ -29,6 +31,7 @@ return {
     }
 
     telescope.load_extension "fzf"
+    telescope.load_extension "repo"
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
@@ -39,5 +42,7 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
     keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
+    keymap.set("n", "<leader>fgr", "<cmd>Telescope repo list<cr>", { desc = "Git Repos" })
+    -- keymap.set("n", "<leader>fp", "<cmd>Telescope project<cr>", { desc = "Projects" })
   end,
 }

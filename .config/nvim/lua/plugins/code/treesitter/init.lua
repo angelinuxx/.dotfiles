@@ -67,6 +67,7 @@ return {
         -- },
       }
 
+      -- add blade parser and filetype (for .blade.php files)
       -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       -- parser_config.blade = {
       --   install_info = {
@@ -75,6 +76,12 @@ return {
       --     branch = "main",
       --   },
       --   filetype = "blade",
+      -- }
+      --
+      -- vim.filetype.add {
+      --   pattern = {
+      --     [".*%.blade%.php"] = "blade",
+      --   },
       -- }
     end,
   },
