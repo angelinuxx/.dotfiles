@@ -34,7 +34,7 @@ return {
     },
     keys = { { "<leader>lg", ":GoBlade<cr>", desc = "Laravel go to blade" } },
   },
-  {
-    "jwalton512/vim-blade",
-  },
+  -- {
+  --   "jwalton512/vim-blade",
+  -- },
 }
