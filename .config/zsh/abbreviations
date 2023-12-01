@@ -32,6 +32,6 @@ expand-alias-and-accept-line() {
 zle -N accept-line expand-alias-and-accept-line
 
 # create a new tmux session with the name of the current directory, if exists attach to it
-abbrev-alias tn="tmux new -As ${PWD##*/}"
+abbrev-alias tn="tmux new -As \${PWD##*/}"
 
 
