@@ -11,7 +11,7 @@ return {
           icons_enabled = true,
           theme = "auto",
           component_separators = {},
-          section_separators = { left = '', right = '' },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = {
             statusline = { "alpha", "lazy" },
             winbar = {
@@ -29,7 +29,7 @@ return {
           lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
           lualine_x = { components.lazy_updates, "filename", components.spaces, "encoding", "fileformat", "filetype", "progress" },
           lualine_y = {},
-          lualine_z = { "location" },
+          lualine_z = { "location", components.unsaved },
         },
         inactive_sections = {
           lualine_a = {},

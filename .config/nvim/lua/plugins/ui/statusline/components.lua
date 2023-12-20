@@ -1,7 +1,17 @@
 local icons = require "config.icons"
-local lazy_status = require("lazy.status")
+local lazy_status = require "lazy.status"
 
 return {
+  unsaved = {
+    function()
+      if vim.bo.modified then
+        return icons.git.FileUnstaged
+      end
+      return ""
+    end,
+    padding = 1,
+    color = { fg = "#456cb5" },
+  },
   spaces = {
     function()
       local shiftwidth = vim.api.nvim_buf_get_option(0, "shiftwidth")
@@ -58,11 +68,11 @@ return {
       local buf_client_names = {}
 
       -- add client
-      for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" then
-          table.insert(buf_client_names, client.name)
-        end
-      end
+      -- for _, client in pairs(buf_clients) do
+      --   if client.name ~= "null-ls" then
+      --     table.insert(buf_client_names, client.name)
+      --   end
+      -- end
 
       -- add formatter
       local lsp_utils = require "plugins.lsp.utils"
@@ -90,7 +100,7 @@ return {
         end
       end
       table.sort(client_names)
-      return icons.ui.Code .. " " ..  table.concat(client_names, ", ") .. " " .. icons.ui.Code
+      return icons.ui.Code .. " " .. table.concat(client_names, ", ") .. " " .. icons.ui.Code
     end,
     -- icon = icons.ui.Code,
     colored = true,

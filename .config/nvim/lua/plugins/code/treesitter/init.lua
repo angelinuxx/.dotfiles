@@ -2,12 +2,15 @@
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
+    -- "nvim-treesitter/nvim-treesitter",
+    "dlvandenberg/nvim-treesitter",
+    branch = "feature-angular",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
+      { "dlvandenberg/nvim-treesitter-angular" },
     },
     config = function()
       -- import nvim-treesitter plugin

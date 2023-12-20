@@ -17,7 +17,7 @@ return {
       width = 35,
       number = true,
       relativenumber = true,
-      centralize_selection = true,
+      -- centralize_selection = true,
     },
     filters = {
       custom = { "^.git$" },

@@ -42,7 +42,7 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
     keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
-    keymap.set("n", "<leader>fgr", "<cmd>Telescope repo list<cr>", { desc = "Git Repos" })
+    -- keymap.set("n", "<leader>fr", "<cmd>Telescope repo list<cr>", { desc = "Git Repos" })
     -- keymap.set("n", "<leader>fp", "<cmd>Telescope project<cr>", { desc = "Projects" })
   end,
 }
