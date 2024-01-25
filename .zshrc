@@ -121,6 +121,10 @@ path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin')
 
 export PATH
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
 # Load nvm and nvm completion
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

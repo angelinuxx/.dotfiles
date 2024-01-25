@@ -65,3 +65,8 @@ vim.opt.splitkeep = "screen"
 -- open new split panes to right and bottom
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+-- enable folding w/nvim-treesitter
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false

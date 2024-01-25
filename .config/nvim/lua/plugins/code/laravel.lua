@@ -1,7 +1,9 @@
 return {
   {
+    enabled = true,
     "adalessa/laravel.nvim",
     dependencies = {
+      "nvimtools/none-ls.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope.nvim",
       "tpope/vim-dotenv",
@@ -37,4 +39,7 @@ return {
   -- {
   --   "jwalton512/vim-blade",
   -- },
+  -- {
+  -- adoolaard/nvim-cmp-laravel -- autocomplete for route(' in blade files
+  -- }
 }

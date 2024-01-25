@@ -39,6 +39,9 @@
     {
       "class": "Gnome-terminal",
       "title": "Preferences – General"
+    },
+    {
+      "class": "steam"
     }
   ],
   "skiptaskbarhidden": [],

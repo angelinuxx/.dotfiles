@@ -5,7 +5,7 @@ return {
   unsaved = {
     function()
       if vim.bo.modified then
-        return icons.git.FileUnstaged
+        return icons.ui.Unsaved
       end
       return ""
     end,

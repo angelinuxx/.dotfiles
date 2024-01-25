@@ -3,6 +3,7 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "jay-babu/mason-nvim-dap.nvim",
   },
   lazy = false,
   config = function()
@@ -13,6 +14,8 @@ return {
     local mason_lspconfig = require "mason-lspconfig"
 
     local mason_tool_installer = require "mason-tool-installer"
+
+    local mason_nvim_dap = require "mason-nvim-dap"
 
     -- enable mason and configure icons
     mason.setup {
@@ -36,8 +39,9 @@ return {
         "lua_ls",
         "emmet_ls",
         "pyright",
-        -- "phpactor",
-        "intelephense",
+        "phpactor",
+        "gopls",
+        "dockerls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -53,7 +57,15 @@ return {
         "blade-formatter", -- blade template formatter (Laravel)
         "pylint", -- python linter
         "eslint_d", -- js linter
+        "golangci-lint", -- go linter
       },
+    }
+
+    mason_nvim_dap.setup {
+      ensure_installed = {
+        "php-debup-adapter",
+      },
+      automatic_installation = true,
     }
   end,
 }

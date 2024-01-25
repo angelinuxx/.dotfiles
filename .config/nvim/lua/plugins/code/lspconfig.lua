@@ -112,15 +112,41 @@ return {
     lspconfig["pyright"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        python = {
+          analysis = {
+            autoImportCompletions = true,
+            typeCheckingMode = "off",
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace", -- "openFilesOnly",
+          },
+        },
+      },
+    }
+
+    -- configure go server
+    lspconfig["gopls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
     }
 
     -- configure php server
-    -- lspconfig["phpactor"].setup {
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    -- }
-    -- intelephense is the best in class Laravel development (even if I prefer phpactor as a server)
-    lspconfig["intelephense"].setup {
+    lspconfig["phpactor"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
+    -- configure php server
+    lspconfig["dockerls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }

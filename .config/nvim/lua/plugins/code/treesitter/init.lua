@@ -2,15 +2,23 @@
 
 return {
   {
-    -- "nvim-treesitter/nvim-treesitter",
-    "dlvandenberg/nvim-treesitter",
-    branch = "feature-angular",
+    "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       { "dlvandenberg/nvim-treesitter-angular" },
+      {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        opts = {
+          custom_calculation = function(node, language_tree)
+            if vim.bo.filetype == "blade" and language_tree._lang ~= "javascript" then
+              return "{{-- %s --}}"
+            end
+          end,
+        },
+      },
     },
     config = function()
       -- import nvim-treesitter plugin
@@ -50,7 +58,7 @@ return {
           "python",
           "regex",
           "php",
-          -- "blade",
+          "blade",
           "phpdoc",
           "sql",
         },
