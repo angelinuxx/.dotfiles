@@ -87,6 +87,7 @@ return {
     lspconfig["angularls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
+      filetypes = { "angular", "html", "typescript", "typescriptreact" },
     }
 
     -- configure css server
@@ -106,6 +107,13 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "php" },
+    }
+
+    -- configure yaml language server
+    lspconfig["yamlls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "yaml" },
     }
 
     -- configure python server
@@ -145,7 +153,7 @@ return {
       on_attach = on_attach,
     }
 
-    -- configure php server
+    -- configure docker ls
     lspconfig["dockerls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,

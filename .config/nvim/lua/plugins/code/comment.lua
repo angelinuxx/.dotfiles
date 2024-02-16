@@ -4,7 +4,14 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     config = function()
-      require("Comment").setup {
+      local comment = require "Comment"
+      local ft = require "Comment.ft"
+      local commentFormats = { angular = "<!-- %s -->", django = "{# %s #}" }
+
+      ft.set("angular", { commentFormats.angular, commentFormats.angular })
+      ft.set("htmldjango", { commentFormats.django, commentFormats.django })
+
+      comment.setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
     end,

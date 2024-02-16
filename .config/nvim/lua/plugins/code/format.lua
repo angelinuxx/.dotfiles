@@ -15,7 +15,7 @@ return {
         typescriptreact = { "prettier" },
         svelte = { "prettier" },
         css = { "prettier" },
-        html = { "prettier" },
+        html = { "djlint" },
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
@@ -25,6 +25,8 @@ return {
         php = { "pint" },
         blade = { "blade-formatter" },
         go = { "gofmt" },
+        angular = { "prettier" },
+        htmldjango = { "djlint" },
       },
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable

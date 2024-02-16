@@ -4,9 +4,11 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     config = true,
   },
+  -- TODO: add a plugin to see git history of current buffer
   {
     "TimUntersberger/neogit",
     cmd = "Neogit",
+    -- enabled = false,
     config = {
       integrations = { diffview = true },
     },

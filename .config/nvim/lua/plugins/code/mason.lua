@@ -3,6 +3,7 @@ return {
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "mfussenegger/nvim-dap",
     "jay-babu/mason-nvim-dap.nvim",
   },
   lazy = false,
@@ -42,6 +43,7 @@ return {
         "phpactor",
         "gopls",
         "dockerls",
+        "yamlls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -55,17 +57,43 @@ return {
         "black", -- python formatter
         "pint", -- php formatter
         "blade-formatter", -- blade template formatter (Laravel)
-        "pylint", -- python linter
+        -- "pylint", -- python linter
         "eslint_d", -- js linter
         "golangci-lint", -- go linter
+        "djlint", -- django linter and formatter
       },
     }
 
     mason_nvim_dap.setup {
       ensure_installed = {
-        "php-debup-adapter",
+        "php",
+        "python",
       },
       automatic_installation = true,
+      -- You can provide additional configuration to the handlers,
+      -- see mason-nvim-dap README for more information
+      handlers = {
+        function(config)
+          require("mason-nvim-dap").default_setup(config)
+        end,
+        php = function(config)
+          config.configurations = {
+            {
+              type = "php",
+              request = "launch",
+              name = "Listen for XDebug",
+              port = 9003,
+              log = true,
+              pathMappings = {
+                ["/var/www/html/"] = vim.fn.getcwd() .. "/",
+              },
+              hostname = "0.0.0.0",
+            },
+          }
+
+          require("mason-nvim-dap").default_setup(config) -- don't forget this!
+        end,
+      },
     }
   end,
 }

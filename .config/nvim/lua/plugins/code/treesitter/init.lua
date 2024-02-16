@@ -8,7 +8,6 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
-      { "dlvandenberg/nvim-treesitter-angular" },
       {
         "JoosepAlviste/nvim-ts-context-commentstring",
         opts = {
@@ -61,6 +60,7 @@ return {
           "blade",
           "phpdoc",
           "sql",
+          "angular",
         },
         -- incremental_selection = {
         --   enable = true,
