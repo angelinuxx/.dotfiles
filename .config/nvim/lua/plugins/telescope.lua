@@ -1,3 +1,18 @@
+-- @see https://github.com/nvim-telescope/telescope.nvim/issues/1923
+function get_visual_selection()
+  vim.cmd 'noau normal! "vy"'
+  local text = vim.fn.getreg "v"
+  vim.fn.setreg("v", {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    -- TODO: improve generating regex from visual selection
+    return text
+  else
+    return ""
+  end
+end
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -39,6 +54,10 @@ return {
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
     keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+    keymap.set("v", "<leader>fs", function()
+      local text = get_visual_selection()
+      require("telescope.builtin").live_grep { default_text = text }
+    end, { desc = "Find selected string in cwd", noremap = true, silent = true })
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
     keymap.set("n", "<leader>fgs", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
