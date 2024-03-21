@@ -53,8 +53,8 @@ return {
 
     keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
     keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", { desc = "Fuzzy find string in cwd" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope resume<cr>", { desc = "Resume last search" })
+    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Fuzzy find string in cwd" })
+    keymap.set("n", "<leader>fl", "<cmd>Telescope resume<cr>", { desc = "Resume last search" })
     keymap.set("v", "<leader>fs", function()
       local text = get_visual_selection()
       require("telescope.builtin").live_grep { default_text = text }

@@ -8,16 +8,6 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        opts = {
-          custom_calculation = function(node, language_tree)
-            if vim.bo.filetype == "blade" and language_tree._lang ~= "javascript" then
-              return "{{-- %s --}}"
-            end
-          end,
-        },
-      },
     },
     config = function()
       -- import nvim-treesitter plugin
@@ -61,6 +51,7 @@ return {
           "phpdoc",
           "sql",
           "angular",
+          "htmldjango",
         },
         -- incremental_selection = {
         --   enable = true,
@@ -70,11 +61,6 @@ return {
         --     scope_incremental = false,
         --     node_decremental = "<bs>",
         --   },
-        -- },
-        -- -- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-        -- context_commentstring = {
-        --   enable = true,
-        --   enable_autocmd = false,
         -- },
       }
 
