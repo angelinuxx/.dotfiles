@@ -7,13 +7,20 @@ return {
       config = {
         enable_autocmd = false,
         custom_calculation = function(node, language_tree)
-          -- print(vim.bo.filetype)
-          print(language_tree._lang)
+          -- commentstring for blade template (Laravel)
           if vim.bo.filetype == "blade" then
             return "{{-- %s --}}"
           end
-          if vim.bo.filetype == "typescript" and language_tree._lang == "angular" then
+          -- commentstring for angular inline template
+          if vim.bo.filetype == "typescript" and node:parent():type() == "template_string" then
             return "<!-- %s -->"
+            -- TODO: improve this checking if node is inside a decorator
+            -- local inside_decorator, err = pcall(function()
+            --   return node:parent():parent():parent():parent():parent():type() == "decorator"
+            -- end)
+            -- if not err and inside_decorator then
+            --   return "<!-- %s -->"
+            -- end
           end
         end,
       },
