@@ -1,4 +1,5 @@
 [global_config]
+  handle_size = 1
   title_transmit_bg_color = "#403c58"
   title_inactive_fg_color = "#ffffff"
   title_inactive_bg_color = "#6f6e85"

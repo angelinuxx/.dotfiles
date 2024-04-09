@@ -130,6 +130,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Read open api
+# export OPENAI_API_KEY=$(op read op://Personal/OpenAI/api-key --no-newline)
+
 # Git configuration
 export GIT_EDITOR=nvim
 
