@@ -12,6 +12,9 @@ return {
         black = {
           args = { "--quiet", "-l", "120", "-" },
         },
+        golines = {
+          args = { "-m", "120" },
+        },
         injected = {
           -- Set to true to ignore errors
           ignore_errors = false,
@@ -58,7 +61,7 @@ return {
         python = { "isort", "black" },
         php = { "pint" },
         blade = { "blade-formatter" },
-        go = { "gofmt" },
+        go = { "gofmt", "golines" },
         angular = { "prettier" },
         htmldjango = { "djlint" },
       },

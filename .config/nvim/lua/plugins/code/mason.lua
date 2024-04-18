@@ -60,6 +60,7 @@ return {
         -- "pylint", -- python linter
         "eslint_d", -- js linter
         "golangci-lint", -- go linter
+        "golines", -- extends go_fmt to handle long lines wrap
         "djlint", -- django linter and formatter
       },
     }
