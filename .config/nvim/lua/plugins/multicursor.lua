@@ -1,6 +1,5 @@
 return {
   "smoka7/multicursors.nvim",
-  event = "VeryLazy",
   dependencies = {
     "smoka7/hydra.nvim",
   },
@@ -9,7 +8,7 @@ return {
   keys = {
     {
       mode = { "v", "n" },
-      "<a-j>",
+      "<c-m>",
       "<cmd>MCstart<cr>",
       desc = "Create a selection for selected text or word under the cursor",
     },

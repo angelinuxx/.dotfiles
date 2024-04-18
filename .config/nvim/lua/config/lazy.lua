@@ -22,6 +22,7 @@ require("lazy").setup({
   install = { missing = true, colorscheme = { "rose-pine" } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
+  lazy = true,
   performance = {
     rtp = {
       disabled_plugins = {
