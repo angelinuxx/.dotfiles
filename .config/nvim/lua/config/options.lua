@@ -3,7 +3,7 @@ local indent = 4
 vim.g.mapleader = " "
 
 -- ui
--- vim.opt.guicursor = ""
+vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.guifont = "Caskavya Cove Nerd Font:h11"

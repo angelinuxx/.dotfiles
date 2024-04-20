@@ -68,27 +68,29 @@ return {
     mason_nvim_dap.setup {
       ensure_installed = {
         "php",
+        "go",
         "python",
       },
       automatic_installation = true,
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information
       handlers = {
-        function(config)
-          require("mason-nvim-dap").default_setup(config)
-        end,
+        -- function(config)
+        --   require("mason-nvim-dap").default_setup(config)
+        -- end,
         php = function(config)
           config.configurations = {
             {
               type = "php",
               request = "launch",
               name = "Listen for XDebug",
+              hostname = "0.0.0.0",
               port = 9003,
               log = true,
               pathMappings = {
-                ["/var/www/html/"] = vim.fn.getcwd() .. "/",
+                ["/var/www/sbam/"] = "${workspaceFolder}",
               },
-              hostname = "0.0.0.0",
+              -- TODO: set up ignored paths (e.g. /favicon.ico)
             },
           }
 
