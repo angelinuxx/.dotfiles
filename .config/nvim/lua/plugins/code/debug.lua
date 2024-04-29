@@ -34,9 +34,10 @@ return {
       local keymap = vim.api.nvim_set_keymap
 
       keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", { desc = "Toggle breakpoint" })
+      keymap("n", "<leader>dx", "<cmd>lua require'dap'.clear_breakpoints()<cr>", { desc = "Toggle breakpoint" })
       keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", { desc = "Continue" })
-      keymap("n", "<F9>", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step into" })
       keymap("n", "<leader>dn", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step over (next)" })
+      keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step into" })
       keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step out" })
 
       vim.fn.sign_define("DapBreakpoint", { text = "🐞" })

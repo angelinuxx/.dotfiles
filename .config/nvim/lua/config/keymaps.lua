@@ -5,8 +5,9 @@ local keymap = vim.keymap.set
 
 keymap("n", "Q", "<nop>")
 
--- add x perm to current file
---keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- change ownership to current user on current file
+keymap("n", "<leader>o", "<cmd>!chown $USER %<CR>", { silent = true })
+keymap("n", "<leader>x", "<cmd>!chmod u+x %<CR>", { silent = true })
 
 -- disable search highlight
 keymap("n", "<leader>nh", ":nohlsearch<CR>")

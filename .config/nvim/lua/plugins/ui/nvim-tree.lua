@@ -45,8 +45,5 @@ return {
   config = function(plugin)
     local tree = require "nvim-tree"
     tree.setup(plugin.opts)
-
-    -- change tree background color
-    vim.cmd "hi NvimTreeNormal guibg=#24212f"
   end,
 }

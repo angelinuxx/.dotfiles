@@ -16,6 +16,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- cursor line
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both"
+
 -- indentation
 vim.opt.tabstop = indent
 vim.opt.shiftwidth = indent
