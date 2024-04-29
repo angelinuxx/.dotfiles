@@ -34,4 +34,7 @@ zle -N accept-line expand-alias-and-accept-line
 # create a new tmux session with the name of the current directory, if exists attach to it
 abbrev-alias tn="tmux new -As \${PWD##*/}"
 
+# (works inside tmux only) 
+# change to the session with the name of the current directory, if not exists create a new one and attach to it
+abbrev-alias ts="tmux switchc -t \${PWD##*/} || tmux new -dPs \${PWD##*/} && tmux switchc -t \${PWD##*/}"
 
