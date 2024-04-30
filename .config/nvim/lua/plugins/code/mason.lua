@@ -44,6 +44,8 @@ return {
         "gopls",
         "dockerls",
         "yamlls",
+        "sqlls",
+        "bashls",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
@@ -62,6 +64,9 @@ return {
         "golangci-lint", -- go linter
         "golines", -- extends go_fmt to handle long lines wrap
         "djlint", -- django linter and formatter
+        "sqlfmt", -- sql formatter
+        "beautysh", -- bash formatter
+        "shellcheck", -- bash linter
       },
     }
 

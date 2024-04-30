@@ -116,6 +116,13 @@ return {
       filetypes = { "yaml" },
     }
 
+    -- configure sql language server
+    lspconfig["sqlls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "sql" },
+    }
+
     -- configure python server
     lspconfig["pyright"].setup {
       capabilities = capabilities,

@@ -39,6 +39,7 @@ return {
             blade = "php",
             php = "php",
             htmldjango = "html",
+            sql = "sql",
           },
           -- Map of treesitter language to formatters to use
           -- (defaults to the value from formatters_by_ft)
@@ -64,6 +65,8 @@ return {
         go = { "gofmt", "golines" },
         angular = { "prettier" },
         htmldjango = { "djlint" },
+        sql = { "sqlfmt" },
+        sh = { "beautysh" },
       },
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
