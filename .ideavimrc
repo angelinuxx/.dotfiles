@@ -7,7 +7,7 @@ set ideajoin
 set showmode
 set showcmd
 
-set guicursor=""
+set guicursor=" "
 
 set number
 set relativenumber
@@ -37,9 +37,6 @@ noremap <leader>nh :nohl<CR>
 
 inoremap jk <Esc>
 
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-
 " Better viewing
 nnoremap n nzzzv
 nnoremap N nzzzv
@@ -61,3 +58,5 @@ noremap <leader>Y "+Y
 
 " delete to void register
 noremap <leader>d "_d
+
+nnoremap gcc :action CommentByLineComment

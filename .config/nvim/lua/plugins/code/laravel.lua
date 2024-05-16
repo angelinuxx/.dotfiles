@@ -3,7 +3,7 @@ return {
     enabled = true,
     "adalessa/laravel.nvim",
     dependencies = {
-      "nvimtools/none-ls.nvim",
+      -- "nvimtools/none-ls.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-telescope/telescope.nvim",
       "tpope/vim-dotenv",
@@ -14,17 +14,16 @@ return {
       { "<leader>la", ":Laravel artisan<cr>" },
       { "<leader>lr", ":Laravel routes<cr>" },
       { "<leader>lm", ":Laravel related<cr>" },
-      {
-        "<leader>lt",
-        function()
-          require("laravel.tinker").send_to_tinker()
-        end,
-        mode = "v",
-        desc = "Laravel Application Routes",
-      },
+      { "<leader>lt", ":Laravel tinker<cr>" },
     },
     config = function()
-      require("laravel").setup()
+      require("laravel").setup {
+        features = {
+          null_ls = {
+            enable = false,
+          },
+        },
+      }
       require("telescope").load_extension "laravel"
     end,
   },

@@ -73,7 +73,8 @@ return {
     mason_nvim_dap.setup {
       ensure_installed = {
         "php",
-        "go",
+        "delve", -- go debugger
+        "go-debug-adapter", -- debug adapter for go
         "python",
       },
       automatic_installation = true,
@@ -101,6 +102,27 @@ return {
 
           require("mason-nvim-dap").default_setup(config) -- don't forget this!
         end,
+        --[[ go = function(config)
+          config.configurations = {
+            {
+              type = "go",
+              name = "Attach remote",
+              mode = "remote",
+              request = "attach",
+              -- tell which host and port to connect to
+              connect = {
+                host = "127.0.0.1",
+                port = "9004",
+              },
+              substitutepath = { {
+                from = vim.fn.getcwd(),
+                to = "/go/src/app",
+              } },
+            },
+          }
+
+          require("mason-nvim-dap").default_setup(config) -- don't forget this!
+        end, ]]
       },
     }
   end,

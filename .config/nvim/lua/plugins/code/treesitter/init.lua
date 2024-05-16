@@ -75,9 +75,14 @@ return {
         filetype = "blade",
       }
 
+      -- additional filetypes
       vim.filetype.add {
+        filename = {
+          [".env"] = "dotenv",
+        },
         pattern = {
           [".*%.blade%.php"] = "blade",
+          ["%.env%.[%w_.-]+"] = "dotenv",
         },
       }
     end,
