@@ -19,13 +19,15 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-tree/nvim-web-devicons",
-    -- "nvim-telescope/telescope-project.nvim",
     "cljoly/telescope-repo.nvim",
   },
   lazy = false,
   config = function()
     local telescope = require "telescope"
     local actions = require "telescope.actions"
+
+    telescope.load_extension "fzf"
+    telescope.load_extension "repo"
 
     telescope.setup {
       defaults = {
@@ -45,9 +47,6 @@ return {
       },
     }
 
-    telescope.load_extension "fzf"
-    telescope.load_extension "repo"
-
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
@@ -64,7 +63,5 @@ return {
     keymap.set("n", "<leader>fgs", "<cmd>Telescope git_status<cr>", { desc = "Git Status" })
     keymap.set("n", "<leader>fgh", "<cmd>Telescope git_commits<cr>", { desc = "Git History" })
     keymap.set("n", "<leader>fgh", "<cmd>Telescope git_bcommits<cr>", { desc = "Git Buffer History" })
-    -- keymap.set("n", "<leader>fr", "<cmd>Telescope repo list<cr>", { desc = "Git Repos" })
-    -- keymap.set("n", "<leader>fp", "<cmd>Telescope project<cr>", { desc = "Projects" })
   end,
 }
