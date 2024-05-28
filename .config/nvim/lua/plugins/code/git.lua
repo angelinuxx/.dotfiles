@@ -1,11 +1,10 @@
 return {
-  {
+  --[[ {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     config = true,
-  },
-  -- TODO: add a plugin to see git history of current buffer
-  {
+  }, ]]
+  --[[ {
     "TimUntersberger/neogit",
     cmd = "Neogit",
     -- enabled = false,
@@ -17,7 +16,7 @@ return {
       { "<leader>gc", "<cmd>Neogit commit kind=floating<cr>", desc = "Commit" },
       { "<leader>gp", "<cmd>Neogit push kind=floating<cr>", desc = "Push" },
     },
-  },
+  }, ]]
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },

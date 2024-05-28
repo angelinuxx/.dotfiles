@@ -97,10 +97,10 @@ return {
     }
 
     -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup {
+    --[[ lspconfig["tailwindcss"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    }
+    } ]]
 
     -- configure emmet language server
     lspconfig["emmet_ls"].setup {
@@ -158,6 +158,16 @@ return {
     lspconfig["phpactor"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        phpactor = {
+          logging = {
+            level = "DEBUG",
+          },
+          indexer = {
+            stub_paths = { "%project_root%/.ide-helper" },
+          },
+        },
+      },
     }
 
     -- configure docker ls

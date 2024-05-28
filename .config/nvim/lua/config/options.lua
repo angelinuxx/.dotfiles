@@ -74,3 +74,5 @@ vim.opt.splitbelow = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
+
+vim.lsp.set_log_level "debug"
