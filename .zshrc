@@ -117,7 +117,7 @@ alias vi=nvim
 . $HOME/.config/zsh/aliases 
 
 # Additional $PATH variables
-path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin', '/home/angelinuxx/.local/bin/freeter-v2/freeter')
+path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter')
 
 export PATH
 
@@ -161,7 +161,7 @@ load-nvmrc
 
 
 # Load Angular CLI autocompletion.
-# source <(ng completion script)
+source <(ng completion script)
 
 # present a list of tmux sessions to choose from
 function tm() {
