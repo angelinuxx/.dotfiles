@@ -42,6 +42,9 @@
     },
     {
       "class": "steam"
+    },
+    {
+      "class": "Slack"
     }
   ],
   "skiptaskbarhidden": [],
