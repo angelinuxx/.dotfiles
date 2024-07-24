@@ -13,6 +13,20 @@ function get_visual_selection()
   end
 end
 
+-- Telescope ignore patterns
+local telescope_ignore_patterns = {
+  "^.git/",
+  "^.idea/",
+  "[^a-z]test[^a-z]",
+  "[^a-z]mock[^a-z]",
+  "[^a-z]stub[^a-z]",
+  "[^a-z]spec[^a-z]",
+  "Test[^a-z]",
+  "Mock[^a-z]",
+  "Stub[^a-z]",
+  "Spec[^a-z]",
+}
+
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
@@ -26,17 +40,12 @@ return {
     local telescope = require "telescope"
     local actions = require "telescope.actions"
 
-    telescope.load_extension "fzf"
-    telescope.load_extension "repo"
-
     telescope.setup {
       defaults = {
         path_display = { "truncate" },
         sorting_strategy = "ascending",
         layout_config = { prompt_position = "top" },
-        find_files = {
-          hidden = true,
-        },
+        file_ignore_patterns = telescope_ignore_patterns,
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -45,7 +54,15 @@ return {
           },
         },
       },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
     }
+
+    telescope.load_extension "fzf"
+    telescope.load_extension "repo"
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness

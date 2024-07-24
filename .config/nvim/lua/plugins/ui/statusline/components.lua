@@ -34,8 +34,10 @@ return {
   },
   codeium = {
     function()
-      return ""
+      return vim.api.nvim_call_function("codeium#GetStatusString", {})
     end,
+    icon = icons.ai.Codeium,
+    color = { fg = "#09b6a2" },
   },
   separator = {
     function()
@@ -69,32 +71,37 @@ return {
         return msg
       end
 
-      local buf_ft = vim.bo.filetype
+      -- local buf_ft = vim.bo.filetype
       local buf_client_names = {}
 
       -- add client
-      -- for _, client in pairs(buf_clients) do
-      --   if client.name ~= "null-ls" then
-      --     table.insert(buf_client_names, client.name)
-      --   end
-      -- end
+      for _, client in pairs(buf_clients) do
+        table.insert(buf_client_names, client.name)
+      end
 
-      -- add formatter
-      local lsp_utils = require "plugins.lsp.utils"
-      local formatters = lsp_utils.list_formatters(buf_ft)
-      vim.list_extend(buf_client_names, formatters)
+      -- -- add formatter
+      -- local lsp_utils = require "plugins.lsp.utils"
+      -- local formatters = lsp_utils.list_formatters(buf_ft)
+      -- vim.list_extend(buf_client_names, formatters)
+      --
+      -- -- add linter
+      -- local linters = lsp_utils.list_linters(buf_ft)
+      -- vim.list_extend(buf_client_names, linters)
+      local linters = require("lint").get_running()
+      local linter_info = ""
+      if #linters == 0 then
+        linter_info = icons.ui.BadgeVerified
+      end
+      table.sort(linters)
+      linter_info = icons.ui.SearchFocus .. " " .. table.concat(linters, ", ")
 
-      -- add linter
-      local linters = lsp_utils.list_linters(buf_ft)
-      vim.list_extend(buf_client_names, linters)
-
-      -- add hover
-      local hovers = lsp_utils.list_hovers(buf_ft)
-      vim.list_extend(buf_client_names, hovers)
-
-      -- add code action
-      local code_actions = lsp_utils.list_code_actions(buf_ft)
-      vim.list_extend(buf_client_names, code_actions)
+      -- -- add hover
+      -- local hovers = lsp_utils.list_hovers(buf_ft)
+      -- vim.list_extend(buf_client_names, hovers)
+      --
+      -- -- add code action
+      -- local code_actions = lsp_utils.list_code_actions(buf_ft)
+      -- vim.list_extend(buf_client_names, code_actions)
 
       local hash = {}
       local client_names = {}
@@ -105,9 +112,10 @@ return {
         end
       end
       table.sort(client_names)
-      return icons.ui.Code .. " " .. table.concat(client_names, ", ") .. " " .. icons.ui.Code
+      local lsp_info = icons.ui.Code .. " " .. table.concat(client_names, ", ")
+
+      return lsp_info--[[  .. " " .. linter_info ]]
     end,
-    -- icon = icons.ui.Code,
     colored = true,
     on_click = function()
       vim.cmd [[LspInfo]]

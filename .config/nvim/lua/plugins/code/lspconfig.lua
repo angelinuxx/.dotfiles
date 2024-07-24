@@ -2,9 +2,15 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
+    "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "smjonas/inc-rename.nvim", config = true },
+    {
+      "dmmulroy/ts-error-translator.nvim",
+      config = true,
+      ft = { "typescript", "typescriptreact", "javascript", "javascriptreact", "angular" },
+    },
   },
   config = function()
     -- import lspconfig plugin
@@ -16,6 +22,26 @@ return {
     local keymap = vim.keymap -- for conciseness
 
     local opts = { noremap = true, silent = true }
+
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+      border = "rounded",
+    })
+
+    -- translate typescript errors to human readable
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+      local ts_lsp = { "tsserver", "angularls", "volar" }
+      local clients = vim.lsp.get_clients { id = ctx.client_id }
+      if vim.tbl_contains(ts_lsp, clients[1].name) then
+        local filtered_result = {
+          diagnostics = vim.tbl_filter(function(d)
+            return d.severity == 1
+          end, result.diagnostics),
+        }
+        require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx, config)
+      end
+      vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+    end
+
     local on_attach = function(client, bufnr)
       opts.buffer = bufnr
 
@@ -85,10 +111,25 @@ return {
     }
 
     -- configure angular server
+    local angularls_path = require("mason-registry").get_package("angular-language-server"):get_install_path()
+    local cmd = {
+      "ngserver",
+      "--stdio",
+      "--tsProbeLocations",
+      vim.fn.getcwd(),
+      -- table.concat({ angularls_path, vim.fn.getcwd() }, ","),
+      "--ngProbeLocations",
+      vim.fn.getcwd(),
+      -- table.concat({ angularls_path .. "/node_modules/@angular/language-server", vim.fn.getcwd() }, ","),
+    }
     lspconfig["angularls"].setup {
+      -- cmd = cmd,
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "angular", "html", "typescript", "typescriptreact" },
+      -- on_new_config = function(new_config, new_root_dir)
+      --   new_config.cmd = cmd
+      -- end,
+      filetypes = { "html", "typescript", "typescriptreact", "angular" },
     }
 
     -- configure css server
@@ -98,10 +139,11 @@ return {
     }
 
     -- configure tailwindcss server
-    --[[ lspconfig["tailwindcss"].setup {
+    lspconfig["tailwindcss"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    } ]]
+      filetypes = { "html", "typescript", "angular", "typescriptreact", "javascriptreact", "javascript" },
+    }
 
     -- configure emmet language server
     lspconfig["emmet_ls"].setup {

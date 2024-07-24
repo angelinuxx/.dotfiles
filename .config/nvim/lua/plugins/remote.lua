@@ -12,4 +12,16 @@ return {
     },
     opts = {},
   },
+  {
+    "abidibo/nvim-httpyac",
+    config = function()
+      require("nvim-httpyac").setup()
+    end,
+    event = "VeryLazy",
+    cmd = { "NvimHttpYac", "NvimHttpYacAll" },
+    keys = {
+      { "<Leader>rr", "<cmd>:NvimHttpYac<CR>", desc = "Run request" },
+      { "<Leader>ra", "<cmd>:NvimHttpYacAll<CR>", desc = "Run all requests" },
+    },
+  },
 }

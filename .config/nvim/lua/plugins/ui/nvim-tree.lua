@@ -9,8 +9,6 @@ return {
     { "<leader>ep", "<cmd>NvimTreeFindFile<CR>", desc = "Point buffer in File Explorer" },
   },
   opts = {
-    disable_netrw = false,
-    hijack_netrw = true,
     hijack_cursor = true,
     respect_buf_cwd = true,
     view = {

@@ -19,7 +19,7 @@ require("lazy").setup({
   { import = "plugins.code" },
 }, {
   defaults = { version = nil },
-  install = { missing = true, colorscheme = { "rose-pine" } },
+  install = { missing = true, colorscheme = { "catpuccin" } },
   checker = { enabled = true, notify = false },
   change_detection = { notify = false },
   lazy = true,
@@ -28,9 +28,6 @@ require("lazy").setup({
       disabled_plugins = {
         "gzip",
         "matchit",
-        -- "matchparen",
-        "netrw",
-        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

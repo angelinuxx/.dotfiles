@@ -14,7 +14,7 @@ return {
       { "<leader>la", ":Laravel artisan<cr>" },
       { "<leader>lr", ":Laravel routes<cr>" },
       { "<leader>lm", ":Laravel related<cr>" },
-      { "<leader>lt", ":Laravel tinker<cr>" },
+      -- { "<leader>lt", ":Laravel tinker<cr>" },
     },
     config = function()
       require("laravel").setup {

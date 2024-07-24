@@ -56,6 +56,7 @@ return {
     ArrowCircleLeft = "",
     ArrowCircleRight = "",
     ArrowCircleUp = "",
+    BadgeVerified = "󰦕",
     BoldArrowDown = "",
     BoldArrowLeft = "",
     BoldArrowRight = "",
@@ -114,6 +115,7 @@ return {
     Plus = "",
     Project = "",
     Search = "",
+    SearchFocus = "󱉶",
     SignIn = "",
     SignOut = "",
     Tab = "󰌒",
@@ -194,5 +196,8 @@ return {
     Vim = "",
     XML = "",
     YAML = "",
+  },
+  ai = {
+    Codeium = "󰘦",
   },
 }

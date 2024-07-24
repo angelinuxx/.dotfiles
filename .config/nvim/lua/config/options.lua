@@ -70,9 +70,11 @@ vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- enable folding w/nvim-treesitter
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false
+-- enable folding (I use nvim-ufo plugin)
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.lsp.set_log_level "debug"
+-- vim.lsp.set_log_level "debug"

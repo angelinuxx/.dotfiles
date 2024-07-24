@@ -5,19 +5,24 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 500
   end,
-  config = function()
-    local wk = require "which-key"
-    wk.setup {
-      key_labels = { ["<leader>"] = "<leader>" },
-    }
-    wk.register({
-      f = { name = "+ Find" },
-      s = { name = "+ Splits" },
-      e = { name = "+ File explorer" },
-      c = { name = "+ Code" },
-      d = { name = "+ Dap" },
-      h = { name = "+ Harpoon" },
-      g = { name = "+ Git" },
-    }, { prefix = "<leader>" })
-  end,
+  opts = {
+    spec = {
+      { "<leader>c", group = " Code" },
+      { "<leader>d", group = " Dap" },
+      { "<leader>e", group = " File explorer" },
+      { "<leader>f", group = " Find" },
+      { "<leader>g", group = " Git" },
+      { "<leader>h", group = " Harpoon" },
+      { "<leader>s", group = " Splits" },
+    },
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show { global = false }
+      end,
+      desc = "Buffer Local Keymaps (which-key)",
+    },
+  },
 }
