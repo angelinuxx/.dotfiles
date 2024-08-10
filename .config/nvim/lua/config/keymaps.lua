@@ -12,6 +12,9 @@ keymap("n", "<leader>x", "<cmd>!chmod u+x %<CR>", { silent = true })
 -- disable search highlight
 keymap("n", "<leader>nh", ":nohlsearch<CR>")
 
+-- search highlighted text in current buffer
+keymap("v", "<leader>/", [[y/\V<C-R>"<CR>]])
+
 -- Better viewing
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
