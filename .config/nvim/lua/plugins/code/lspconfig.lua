@@ -6,11 +6,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "smjonas/inc-rename.nvim", config = true },
-    {
-      "dmmulroy/ts-error-translator.nvim",
-      config = true,
-      ft = { "typescript", "typescriptreact", "javascript", "javascriptreact", "angular" },
-    },
+    { "dmmulroy/ts-error-translator.nvim", config = true },
   },
   config = function()
     -- import lspconfig plugin
@@ -26,21 +22,6 @@ return {
     vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
       border = "rounded",
     })
-
-    -- translate typescript errors to human readable
-    --[[ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-      local ts_lsp = { "ts_ls", "angularls", "volar" }
-      local clients = vim.lsp.get_clients { id = ctx.client_id }
-      if vim.tbl_contains(ts_lsp, clients[1].name) then
-        local filtered_result = {
-          diagnostics = vim.tbl_filter(function(d)
-            return d.severity == 1
-          end, result.diagnostics),
-        }
-        require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx, config)
-      end
-      vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
-    end ]]
 
     local on_attach = function(_, bufnr)
       opts.buffer = bufnr
@@ -107,7 +88,7 @@ return {
     }
 
     -- configure typescript server with plugin
-    -- the following lspconfig is replaced by the more faster and complete typescript-tools.nvim plugin
+    -- no more need to configure tsserver, typescript-tools.nvim will handle it (see ./typescript.lua)
     --[[ lspconfig["ts_ls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
