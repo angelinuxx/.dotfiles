@@ -1,14 +1,20 @@
 return {
-  "jose-elias-alvarez/typescript.nvim",
-  ft = { "typescript", "typescriptreact", "typescript.tsx" },
+  "pmizio/typescript-tools.nvim",
+  dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  event = "VeryLazy",
   keys = {
-    { "<leader>lR", vim.cmd.TypescriptRenameFile, desc = "" },
-    { "<leader>ai", vim.cmd.TypescriptAddMissingImports, desc = "" },
-    { "<leader>ru", vim.cmd.TypescriptRemoveUnused, desc = "" },
+    { "<leader>lR", vim.cmd.TSToolsRenameFile, desc = "" },
+    { "<leader>ai", vim.cmd.TSToolsAddMissingImports, desc = "" },
+    { "<leader>ru", vim.cmd.TSToolsRemoveUnusedImports, desc = "Remove unused imports" },
   },
   opts = {
-    server = {
-      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    settings = {
+      tsserver_plugins = {
+        -- for TypeScript v4.9+
+        "@styled/typescript-styled-plugin",
+        -- or for older TypeScript versions
+        -- "typescript-styled-plugin",,
+      },
     },
   },
 }

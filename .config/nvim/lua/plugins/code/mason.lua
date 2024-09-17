@@ -31,7 +31,7 @@ return {
     mason_lspconfig.setup {
       -- list of servers for mason to install
       ensure_installed = {
-        "tsserver",
+        "ts_ls",
         "angularls",
         "html",
         "cssls",
@@ -57,6 +57,7 @@ return {
         "isort", -- python formatter (sort imports)
         "black", -- python formatter
         "pint", -- php formatter
+        "phpcbf", -- php formatter
         "blade-formatter", -- blade template formatter (Laravel)
         -- "pylint", -- python linter
         "eslint_d", -- js linter

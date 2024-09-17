@@ -28,8 +28,8 @@ return {
     })
 
     -- translate typescript errors to human readable
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
-      local ts_lsp = { "tsserver", "angularls", "volar" }
+    --[[ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+      local ts_lsp = { "ts_ls", "angularls", "volar" }
       local clients = vim.lsp.get_clients { id = ctx.client_id }
       if vim.tbl_contains(ts_lsp, clients[1].name) then
         local filtered_result = {
@@ -40,7 +40,7 @@ return {
         require("ts-error-translator").translate_diagnostics(err, filtered_result, ctx, config)
       end
       vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
-    end
+    end ]]
 
     local on_attach = function(_, bufnr)
       opts.buffer = bufnr
@@ -107,10 +107,11 @@ return {
     }
 
     -- configure typescript server with plugin
-    lspconfig["tsserver"].setup {
+    -- the following lspconfig is replaced by the more faster and complete typescript-tools.nvim plugin
+    --[[ lspconfig["ts_ls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
-    }
+    } ]]
 
     -- configure angular server
     local angularls_path = require("mason-registry").get_package("angular-language-server"):get_install_path()

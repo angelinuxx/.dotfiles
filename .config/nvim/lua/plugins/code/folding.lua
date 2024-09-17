@@ -29,6 +29,7 @@ return {
 
       local ft_map = {
         markdown = "",
+        php = "indent",
       }
 
       local ufo = require "ufo"
