@@ -114,7 +114,8 @@ alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias python=python3
 alias vim=nvim
 alias vi=nvim
-. $HOME/.config/zsh/aliases 
+. $HOME/.config/zsh/aliases
+alias aws2="/usr/local/bin/aws"
 
 # Additional $PATH variables
 path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter')
