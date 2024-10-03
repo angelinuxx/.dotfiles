@@ -49,6 +49,7 @@ return {
           "regex",
           "php",
           "blade",
+          "php_only",
           "phpdoc",
           "sql",
           "angular",

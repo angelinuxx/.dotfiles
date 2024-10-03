@@ -57,7 +57,7 @@ return {
         "isort", -- python formatter (sort imports)
         "black", -- python formatter
         "pint", -- php formatter
-        "phpcbf", -- php formatter
+        "php-cs-fixer", -- php formatter
         "blade-formatter", -- blade template formatter (Laravel)
         -- "pylint", -- python linter
         "eslint_d", -- js linter

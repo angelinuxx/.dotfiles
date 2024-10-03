@@ -60,7 +60,7 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
-        php = { "pint" },
+        php = { { "pint", "php-cs-fixer" } },
         blade = { "blade-formatter" },
         go = { "gofmt", "golines" },
         angular = { "prettier" },
