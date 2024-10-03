@@ -1,3 +1,20 @@
+local function grep_at_current_tree_node()
+  local node = require("nvim-tree.lib").get_node_at_cursor()
+  if not node then
+    return
+  end
+  require("telescope.builtin").live_grep { cwd = node.absolute_path }
+end
+
+local function find_files_at_current_tree_node()
+  local node = require("nvim-tree.lib").get_node_at_cursor()
+  if not node then
+    return
+  end
+
+  require("telescope.builtin").find_files { cwd = node.absolute_path }
+end
+
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
@@ -16,6 +33,7 @@ return {
       number = true,
       relativenumber = true,
       -- centralize_selection = true,
+      -- { key = { "<Leader>gr", "gr" }, cb = grep_at_current_tree_node, mode = "n" },
     },
     filters = {
       custom = { "^.git$" },
@@ -39,9 +57,22 @@ return {
         },
       },
     },
+    on_attach = function(bufnr)
+      local api = require "nvim-tree.api"
+      local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      end
+
+      --default mappings
+      api.config.mappings.default_on_attach(bufnr)
+
+      vim.keymap.set("n", "<Leader>fs", grep_at_current_tree_node, opts "Fuzzy find string in current node")
+      vim.keymap.set("n", "<leader>ff", find_files_at_current_tree_node, opts "Fuzzy find files in current node")
+    end,
   },
   config = function(plugin)
     local tree = require "nvim-tree"
+
     tree.setup(plugin.opts)
   end,
 }
