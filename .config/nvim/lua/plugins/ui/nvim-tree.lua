@@ -18,7 +18,7 @@ end
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons", config = { default = true } },
+    { "nvim-tree/nvim-web-devicons", config = true },
   },
   cmd = { "NvimTreeToggle" },
   keys = {

@@ -1,6 +1,6 @@
 return {
   "3rd/image.nvim",
-  dependencies = { "vhyrro/luarocks.nvim" },
+  dependencies = { "leafo/magick" },
   config = function()
     require("image").setup {
       window_overlap_clear_enabled = true, -- toggles images when windows are overlapped

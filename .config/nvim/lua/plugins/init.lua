@@ -5,11 +5,4 @@ return {
     "lambdalisue/suda.vim",
     cmd = { "SudaRead", "SudaWrite" },
   },
-  {
-    "vhyrro/luarocks.nvim", -- install luarocks (lua pkg manager) packages directly within neovim
-    priority = 1001,
-    opts = {
-      rocks = { "magick" },
-    },
-  },
 }

@@ -27,6 +27,7 @@ return {
         },
         -- ensure these language parsers are installed
         ensure_installed = {
+          "diff",
           "json",
           "javascript",
           "typescript",
@@ -48,7 +49,7 @@ return {
           "python",
           "regex",
           "php",
-          "blade",
+          -- "blade", installed manually
           "php_only",
           "phpdoc",
           "sql",

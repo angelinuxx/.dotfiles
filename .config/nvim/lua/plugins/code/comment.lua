@@ -4,7 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      config = {
+      opts = {
         enable_autocmd = false,
         custom_calculation = function(node, language_tree)
           -- commentstring for blade template (Laravel)
