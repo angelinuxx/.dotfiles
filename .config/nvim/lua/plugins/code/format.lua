@@ -24,6 +24,7 @@ return {
           lang_to_ext = {
             html = "html",
             css = "css",
+            scss = "scss",
             bash = "sh",
             c_sharp = "cs",
             elixir = "exs",
@@ -53,6 +54,7 @@ return {
         typescriptreact = { "prettier" },
         svelte = { "prettier" },
         css = { "prettier" },
+        scss = { "prettier" },
         html = { "djlint" },
         json = { "prettier" },
         yaml = { "prettier" },

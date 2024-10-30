@@ -1,8 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
+  priority = 999, -- make sure to load this after mason and mason-lspconfig
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "smjonas/inc-rename.nvim", config = true },
@@ -118,6 +118,21 @@ return {
 
     -- configure css server
     lspconfig["cssls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
+    lspconfig["css_variables"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
+    lspconfig["cssmodules_ls"].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    }
+
+    lspconfig["somesass_ls"].setup {
       capabilities = capabilities,
       on_attach = on_attach,
     }

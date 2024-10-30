@@ -1,7 +1,9 @@
 return {
   "williamboman/mason.nvim",
+  priority = 1000,
   dependencies = {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "williamboman/mason-lspconfig.nvim",
     "mfussenegger/nvim-dap",
     "jay-babu/mason-nvim-dap.nvim",
   },
@@ -35,6 +37,9 @@ return {
         "angularls",
         "html",
         "cssls",
+        "css_variables",
+        "cssmodules_ls",
+        "somesass_ls",
         "tailwindcss",
         "lua_ls",
         "emmet_ls",
