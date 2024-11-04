@@ -23,10 +23,6 @@ keymap("n", "g;", "g;zvzz")
 keymap("n", "<C-u>", "<C-u>zz") -- move half page up keeping cursor in the middle
 keymap("n", "<C-d>", "<C-d>zz") -- move half page down keeping cursor in the middle
 
--- better escape using jk in insert and terminal mode
-keymap("i", "jk", "<ESC>")
-keymap("t", "jk", "<C-\\><C-n>")
-
 -- keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
 -- keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
 -- keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
