@@ -39,6 +39,7 @@ return {
       keymap("n", "<leader>dn", "<cmd>lua require'dap'.step_over()<cr>", { desc = "Step over (next)" })
       keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", { desc = "Step into" })
       keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", { desc = "Step out" })
+      keymap("n", "<leader>dT", "<cmd>lua require'dap'.terminate()<cr>", { desc = "Step out" })
 
       vim.fn.sign_define("DapBreakpoint", { text = "🐞" })
       vim.fn.sign_define("DapStopped", { text = "" })
@@ -54,4 +55,32 @@ return {
     end,
   },
   --   "nvim-telescope/telescope-dap.nvim",
+  -- go debugger
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup {
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Attach remote",
+            mode = "remote",
+            request = "attach",
+            -- tell which host and port to connect to
+            connect = {
+              host = "127.0.0.1",
+              port = "9004",
+            },
+            substitutepath = { {
+              from = vim.fn.getcwd(),
+              to = "/go/src/app",
+            } },
+          },
+        },
+        delve = {
+          port = "9004",
+        },
+      }
+    end,
+  },
 }
