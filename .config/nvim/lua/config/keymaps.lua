@@ -6,8 +6,7 @@ local keymap = vim.keymap.set
 keymap("n", "Q", "<nop>")
 
 -- change ownership to current user on current file
-keymap("n", "<leader>o", "<cmd>!chown $USER %<CR>", { silent = true })
-keymap("n", "<leader>x", "<cmd>!chmod u+x %<CR>", { silent = true })
+-- keymap("n", "<leader>o", "<cmd>!sudo chown $USER %<CR>", { silent = true })
 
 -- disable search highlight
 keymap("n", "<leader>nh", ":nohlsearch<CR>")
@@ -23,10 +22,13 @@ keymap("n", "g;", "g;zvzz")
 keymap("n", "<C-u>", "<C-u>zz") -- move half page up keeping cursor in the middle
 keymap("n", "<C-d>", "<C-d>zz") -- move half page down keeping cursor in the middle
 
--- keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
--- keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
--- keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
--- keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
+-- terminal (see autocmds.lua)
+-- keymap("t", "<Esc>", [[<C-\><C-n>]])
+-- keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
+-- keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
+-- keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
+-- keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
+-- keymap("t", "<C-w>", [[<C-\><C-n><C-w>]])
 
 -- Add undo break-points
 -- keymap("i", ",", ",<c-g>u")
