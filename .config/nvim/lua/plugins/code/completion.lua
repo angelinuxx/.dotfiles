@@ -8,6 +8,7 @@ return {
     "saadparwaiz1/cmp_luasnip", -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim", -- vs-code like pictograms
+    "mlaursen/vim-react-snippets",
   },
   config = function()
     local cmp = require "cmp"
@@ -21,6 +22,9 @@ return {
 
     -- load custom snippets
     require("luasnip.loaders.from_vscode").lazy_load { paths = { "./snippets/angular" } }
+
+    -- load react snippets
+    require("vim-react-snippets").lazy_load()
 
     cmp.setup {
       completion = {
@@ -44,6 +48,7 @@ return {
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
+        { name = "vim-dadbod-completion" },
       }, {
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths

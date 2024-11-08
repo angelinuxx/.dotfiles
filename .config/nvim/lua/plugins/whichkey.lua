@@ -14,6 +14,7 @@ return {
       { "<leader>g", group = " Git" },
       { "<leader>h", group = " Harpoon" },
       { "<leader>s", group = " Splits" },
+      { "<leader>j", group = " Json manipulation" },
     },
   },
   keys = {
