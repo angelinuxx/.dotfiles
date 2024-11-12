@@ -20,6 +20,7 @@
   "image.nvim": { "branch": "master", "commit": "9c9dbed0cdb4dbd199ebfc678a881f5745a36f50" },
   "inc-rename.nvim": { "branch": "main", "commit": "8ba77017ca468f3029bf88ef409c2d20476ea66b" },
   "indent-blankline.nvim": { "branch": "master", "commit": "04e44b09ee3ff189c69ab082edac1ef7ae2e256c" },
+  "jsonpath.nvim": { "branch": "main", "commit": "2d889eb9c39893e030e902b854122a1615c042ea" },
   "larago.nvim": { "branch": "master", "commit": "8bfaf6c85d6e088bec9c5d8b94c8d5495895b2dc" },
   "laravel.nvim": { "branch": "main", "commit": "2e7c08c0511234d5816166c1204e2240edac99b5" },
   "lazy.nvim": { "branch": "main", "commit": "b1134ab82ee4279e31f7ddf7e34b2a99eb9b7bc9" },
