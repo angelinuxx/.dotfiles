@@ -2,6 +2,8 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    -- enabled = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
       local components = require "plugins.ui.statusline.components"
@@ -29,17 +31,18 @@ return {
           lualine_c = { components.diff, components.diagnostics, components.separator, components.lsp_client },
 
           lualine_x = {
+            components.capslock,
             components.lazy_updates,
             components.codeium,
             "filename",
             components.spaces,
             "encoding",
-            "fileformat",
+            "fileformat", -- based on line endings
             "filetype",
             "progress",
           },
           lualine_y = {},
-          lualine_z = { "location", components.unsaved },
+          lualine_z = { "location" },
         },
         inactive_sections = {
           lualine_a = {},
@@ -49,7 +52,7 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
-        extensions = { "nvim-tree", "toggleterm", "quickfix" },
+        extensions = { "nvim-tree", "aerial",  "toggleterm", "quickfix" },
       }
     end,
   },
