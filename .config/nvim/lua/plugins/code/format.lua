@@ -64,7 +64,7 @@ return {
         python = { "isort", "black" },
         php = { { "pint", "php-cs-fixer" } },
         blade = { "blade-formatter" },
-        go = { "gofmt", "golines" },
+        go = { "gofmt" },
         angular = { "prettier" },
         htmldjango = { "djlint" },
         sql = { "sqlfmt" },
