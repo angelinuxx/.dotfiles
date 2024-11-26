@@ -36,6 +36,7 @@ return {
         "ts_ls",
         "angularls",
         "html",
+        "templ",
         "cssls",
         "css_variables",
         "cssmodules_ls",
