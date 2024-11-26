@@ -13,8 +13,16 @@ return {
     "voldikss/vim-floaterm",
     lazy = false,
     config = function()
-      vim.api.nvim_set_keymap("n", "<leader>xd", ":FloatermNew lazydocker<CR>", {})
-      vim.api.nvim_set_keymap("n", "<leader>xg", ":FloatermNew lazygit<CR>", {})
+      vim.api.nvim_set_keymap("n", "<leader>xd", ":FloatermNew lazydocker<CR>", { desc = "Lazy Docker" })
+      vim.api.nvim_set_keymap("n", "<leader>xg", ":FloatermNew lazygit<CR>", { desc = "Lazy Git" })
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>xms",
+        ":FloatermNew --name=mfp --silent --title=MusicForProgrammers --position=topright --height=0.2 mfp<CR>",
+        { desc = "Music For Programmers Start" }
+      )
+      vim.api.nvim_set_keymap("n", "<leader>xmt", ":FloatermToggle mfp<CR><ESC>", { desc = "Music For Programmers Toggle" })
+      vim.api.nvim_set_keymap("n", "<leader>xmk", ":FloatermKill mfp<CR>", { desc = "Music For Programmers Kill" })
 
       vim.g.floaterm_autoinsert = 1
       vim.g.floaterm_autoclose = 1

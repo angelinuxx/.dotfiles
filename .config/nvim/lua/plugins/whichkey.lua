@@ -15,6 +15,8 @@ return {
       { "<leader>h", group = " Harpoon" },
       { "<leader>s", group = " Splits" },
       { "<leader>j", group = " Json manipulation" },
+      { "<leader>x", group = " Floaterm" },
+      { "<leader>xm", group = " Music For Programmers" },
     },
   },
   keys = {
