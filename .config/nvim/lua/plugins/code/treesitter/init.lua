@@ -75,6 +75,9 @@ return {
 
       -- additional filetypes
       vim.filetype.add {
+        extension = {
+          ["env"] = "dotenv",
+        },
         filename = {
           [".env"] = "dotenv",
         },
@@ -83,6 +86,13 @@ return {
           ["%.env%.[%w_.-]+"] = "dotenv",
         },
       }
+
+      vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+        pattern = { "*.env", "*.env.*" },
+        callback = function()
+          vim.cmd "set syntax=sh"
+        end,
+      })
     end,
   },
   -- text_objects,

@@ -15,6 +15,7 @@ return {
       go = { "golangcilint" },
       htmldjango = { "djlint" },
       sh = { "shellcheck" },
+      dotenv = { "dotenv_linter" },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
