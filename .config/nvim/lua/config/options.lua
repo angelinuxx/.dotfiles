@@ -70,4 +70,5 @@ vim.opt.splitkeep = "screen"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- vim.lsp.set_log_level "debug"
+-- enable format on save by default
+vim.g.enable_autoformat = true
