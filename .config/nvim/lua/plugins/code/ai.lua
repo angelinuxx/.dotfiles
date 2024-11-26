@@ -13,15 +13,13 @@ return {
   {
     "Exafunction/codeium.vim",
     event = "BufEnter",
-    -- commit = "289eb724e5d6fab2263e94a1ad6e54afebefafb2",
-    -- enabled = false,
     config = function()
       -- vim.g.codeium_manual = true
       -- vim.g.codeium_no_map_tab = true
       vim.g.codeium_disable_bindings = 1
       -- Change '<C-g>' here to any keycode you like.
       -- vim.keymap.set('i', '<C-c>', function() return vim.fn['codeium#Complete']() end, { expr = true })
-      vim.keymap.set("i", "<C-c>", function()
+      vim.keymap.set("i", "<C-l>", function()
         return vim.fn["codeium#Accept"]()
       end, { expr = true })
       vim.keymap.set("i", "<C-x>", function()
