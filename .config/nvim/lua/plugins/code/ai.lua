@@ -28,12 +28,13 @@ return {
       -- vim.keymap.set('i', '<c-x>', function( return vim.fn['codeium#Clear']() end, { expr = true })
     end,
   },
-  --[[  {
+  {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
-    enabled = false,
     config = function()
-      require("chatgpt").setup()
+      require("chatgpt").setup {
+        api_key_cmd = "op read op://Personal/OpenAI/nvim-key --no-newline",
+      }
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -41,5 +42,5 @@ return {
       "folke/trouble.nvim",
       "nvim-telescope/telescope.nvim",
     },
-  }, ]]
+  },
 }
