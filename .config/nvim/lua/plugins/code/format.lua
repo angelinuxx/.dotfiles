@@ -72,8 +72,8 @@ return {
         sh = { "beautysh" },
       },
       format_on_save = function(bufnr)
-        -- skip autoformat if global is enabled but this buffer is disabled
-        if not vim.b[bufnr].enable_autoformat then
+        -- skip autoformat if buffer variable disable_autoformat is set, event if enable_autoformat is true
+        if vim.b[bufnr].disable_autoformat then
           return
         end
         -- format if one of global or current buffer autoformat is enabled
@@ -119,11 +119,11 @@ return {
       }
     end, { desc = "Format file or range (in visual mode)" })
 
-    -- disable conform on files with extention .tmpl.txt
+    -- disable autoformat on certain files
     vim.api.nvim_create_autocmd({ "BufEnter" }, {
-      pattern = { "*.txt" },
+      pattern = { "*.txt" }, -- add patterns to disable autoformat on
       callback = function()
-        vim.b.enable_autoformat = false
+        vim.b.disable_autoformat = true
       end,
     })
   end,
