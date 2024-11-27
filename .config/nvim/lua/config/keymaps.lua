@@ -5,6 +5,9 @@ local keymap = vim.keymap.set
 
 keymap("n", "Q", "<nop>")
 
+-- Quit remaps
+keymap("n", "<leader>q", ":qa<CR>")
+
 -- change ownership to current user on current file
 -- keymap("n", "<leader>o", "<cmd>!sudo chown $USER %<CR>", { silent = true })
 
