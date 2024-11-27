@@ -18,7 +18,7 @@ return {
       vim.api.nvim_set_keymap(
         "n",
         "<leader>xms",
-        ":FloatermNew --name=mfp --silent --title=MusicForProgrammers --position=topright --height=0.2 mfp<CR>",
+        ":FloatermNew --name=mfp --silent --title=MusicForProgrammers --position=bottomright --height=0.2 --width=0.4 mfp<CR>",
         { desc = "Music For Programmers Start" }
       )
       vim.api.nvim_set_keymap("n", "<leader>xmt", ":FloatermToggle mfp<CR><ESC>", { desc = "Music For Programmers Toggle" })

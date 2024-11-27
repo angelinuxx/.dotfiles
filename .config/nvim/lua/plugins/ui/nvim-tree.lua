@@ -29,7 +29,7 @@ return {
     hijack_cursor = true,
     respect_buf_cwd = true,
     view = {
-      width = 35,
+      width = 40,
       number = true,
       relativenumber = true,
       -- centralize_selection = true,

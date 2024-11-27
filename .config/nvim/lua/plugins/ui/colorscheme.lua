@@ -7,17 +7,14 @@ return {
     require("catppuccin").setup {
       flavour = "mocha",
       integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = true,
+        aerial = true,
+        nvim_surround = true,
         noice = true,
         harpoon = true,
         mason = true,
-        mini = false,
         lsp_trouble = true,
-        -- which_key = true,
+        dadbod_ui = true,
+        which_key = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     }
