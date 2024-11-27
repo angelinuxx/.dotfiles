@@ -1,9 +1,12 @@
 return {
-  --[[ {
+  {
     "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    config = true,
-  }, ]]
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
+    config = function()
+      vim.opt.fillchars:append "diff:╱"
+      require("diffview").setup {}
+    end,
+  },
   --[[ {
     "TimUntersberger/neogit",
     cmd = "Neogit",
