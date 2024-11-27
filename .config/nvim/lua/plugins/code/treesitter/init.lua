@@ -9,6 +9,35 @@ return {
       -- "nvim-treesitter/nvim-treesitter-textobjects",
     },
     config = function()
+      -- additional filetypes detection
+      vim.filetype.add {
+        extension = {
+          env = "dotenv",
+          tmpl = "gotmpl",
+        },
+        filename = {
+          [".env"] = "dotenv",
+        },
+        pattern = {
+          [".*%.tmpl%.html"] = "gotmpl",
+          [".*%.tmpl%.txt"] = "gotmpl",
+          [".*%.blade%.php"] = "blade",
+          ["%.env%.[%w_.-]+"] = "dotenv",
+        },
+      }
+
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+      -- add blade parser (for .blade.php files)
+      parser_config.blade = {
+        install_info = {
+          url = "https://github.com/EmranMR/tree-sitter-blade",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+        filetype = "blade",
+      }
+
       -- import nvim-treesitter plugin
       local treesitter = require "nvim-treesitter.configs"
 
@@ -41,10 +70,11 @@ return {
           "gitignore",
           "query",
           "go",
+          "gotmpl",
           "python",
           "regex",
           "php",
-          -- "blade", installed manually
+          "blade", --installed manually
           "php_only",
           "phpdoc",
           "sql",
@@ -62,31 +92,7 @@ return {
         -- },
       }
 
-      -- add blade parser and filetype (for .blade.php files)
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.blade = {
-        install_info = {
-          url = "https://github.com/EmranMR/tree-sitter-blade",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "blade",
-      }
-
-      -- additional filetypes
-      vim.filetype.add {
-        extension = {
-          ["env"] = "dotenv",
-        },
-        filename = {
-          [".env"] = "dotenv",
-        },
-        pattern = {
-          [".*%.blade%.php"] = "blade",
-          ["%.env%.[%w_.-]+"] = "dotenv",
-        },
-      }
-
+      -- use sh syntax for .env files
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         pattern = { "*.env", "*.env.*" },
         callback = function()

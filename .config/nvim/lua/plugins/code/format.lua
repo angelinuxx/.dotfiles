@@ -65,13 +65,18 @@ return {
         php = { { "pint", "php-cs-fixer" } },
         blade = { "blade-formatter" },
         go = { "gofmt" },
+        gotmpl = { "djlint" },
         angular = { "prettier" },
         htmldjango = { "djlint" },
         sql = { "sqlfmt" },
         sh = { "beautysh" },
       },
       format_on_save = function(bufnr)
-        -- Disable with a global or buffer-local variable
+        -- skip autoformat if global is enabled but this buffer is disabled
+        if not vim.b[bufnr].enable_autoformat then
+          return
+        end
+        -- format if one of global or current buffer autoformat is enabled
         if vim.g.enable_autoformat or vim.b[bufnr].enable_autoformat then
           return {
             lsp_fallback = true,
@@ -105,6 +110,7 @@ return {
       desc = "Disable autoformat-on-save",
     })
 
+    -- set keybinds
     vim.keymap.set({ "n", "v" }, "<leader>cf", function()
       conform.format {
         lsp_fallback = true,
@@ -112,5 +118,13 @@ return {
         timeout_ms = 5000,
       }
     end, { desc = "Format file or range (in visual mode)" })
+
+    -- disable conform on files with extention .tmpl.txt
+    vim.api.nvim_create_autocmd({ "BufEnter" }, {
+      pattern = { "*.txt" },
+      callback = function()
+        vim.b.enable_autoformat = false
+      end,
+    })
   end,
 }
