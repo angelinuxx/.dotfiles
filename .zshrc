@@ -132,7 +132,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Read open api
-# export OPENAI_API_KEY=$(op read op://Personal/OpenAI/api-key --no-newline)
+# export OPENAI_API_KEY=$(op read op://Personal/OpenAI/nvim-key --no-newline)
 
 # Git configuration
 export GIT_EDITOR=nvim
@@ -186,3 +186,6 @@ eval "$(zoxide init zsh)"
 
 # Load abbrevation feature
 . $HOME/.config/zsh/abbreviations 
+
+# Load SBAM sb-cli autocompletion
+. $HOME/.sbam/sb-cli-completion

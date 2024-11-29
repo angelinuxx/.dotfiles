@@ -32,9 +32,7 @@ return {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
-      require("chatgpt").setup {
-        api_key_cmd = "op read op://Personal/OpenAI/nvim-key --no-newline",
-      }
+      require("chatgpt").setup {}
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
