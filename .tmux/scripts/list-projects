@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# List projects in fzf and handle them with tmux
+# Inspired by https://antonsuprun.com/content/post/tmux-fzf-manage-workspaces/
+
+# Catpuccin/mocha theme for fzf
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--multi"
+
+# use fd to list all first level directories in workspace, return results as "full-path directory" sorted by last used then pipe it to fzf
+# when enter is pressed: open the project in tmux (create session if it doesn't exist) and touch the folder so we are able to sort for last used project the next time
+# when ctrl-w is pressed: create a new window in the project path
+# when ctrl-l, ctrl-h, ctrl-j, ctrl-k is pressed: split the window in the direction and go to the project path
+fd . ~/Dev/workspace ~/Clienti/*/workspace ~/Clienti/*/*/workspace ~/Sbam/workspace -d 1 -t d -x stat --format='%Y %n' {} | \
+    sort -nr | \
+    cut -d' ' -f2- | \
+    awk -F'/' '{print $0, $NF}' | \
+    fzf --header "session: enter | window: ctrl-w | below: ctrl-j | above: ctrl-k | left: ctrl-h | right: ctrl-l" \
+    --reverse \
+    --margin 0% \
+    --padding 0% \
+    --with-nth=2 \
+    --bind='enter:become(s=$(echo {2} | sed "s/\./_/g"); tmux switchc -t $s || tmux new -dPs $s -c {1} && tmux switchc -t $s;touch {1})' \
+    --bind='ctrl-w:become(tmux neww -c {1} -n {2})' \
+    --bind='ctrl-l:become(tmux splitw -c {1} -h)' \
+    --bind='ctrl-h:become(tmux splitw -c {1} -hb)' \
+    --bind='ctrl-j:become(tmux splitw -c {1} -v)' \
+    --bind='ctrl-k:become(tmux splitw -c {1} -vb)'
+

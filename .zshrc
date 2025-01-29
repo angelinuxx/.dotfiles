@@ -118,12 +118,12 @@ alias vi=nvim
 alias aws2="/usr/local/bin/aws"
 
 # Additional $PATH variables
-path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter')
+path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter' '/home/angelinuxx/.dotnet/tools')
 
 export PATH
 
 export GOROOT=/usr/local/go
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # Load nvm and nvm completion
@@ -139,7 +139,7 @@ export GIT_EDITOR=nvim
 
 autoload -U add-zsh-hook
 
-# Auto change node version based on .nvmrc file
+# Change node version based on .nvmrc file
 load-nvmrc() {
 
   if [[ -f .nvmrc && -r .nvmrc ]]; then
@@ -156,30 +156,19 @@ load-nvmrc() {
 
 }
 
-add-zsh-hook chpwd load-nvmrc
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Exec load nvmrc
 load-nvmrc
-
+# Exec load nvmrc every time directory changes
+add-zsh-hook chpwd load-nvmrc
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
-# present a list of tmux sessions to choose from
-function tm() {
-    select sel in $(tmux ls -F '#S'); do
-        break;
-    done
-
-    if [ -z "$sel" ]
-    then
-        echo "You didn't select an appropriate choice"
-    else
-        tmux attach -t "$sel"
-    fi
-}
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load fzf configuration
+[[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
 
 # Load zoxide
 eval "$(zoxide init zsh)"
