@@ -36,5 +36,5 @@ abbrev-alias tn="tmux new -As \${PWD##*/}"
 
 # (works inside tmux only) 
 # change to the session with the name of the current directory, if not exists create a new one and attach to it
-abbrev-alias ts="tmux switchc -t \${PWD##*/} || tmux new -dPs \${PWD##*/} && tmux switchc -t \${PWD##*/}"
+abbrev-alias ts="dir=\$(p=\${PWD##*/};echo \${p//./_}); tmux switchc -t \$dir || tmux new -dPs \$dir && tmux switchc -t \$dir;"
 
