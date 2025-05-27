@@ -15,7 +15,7 @@ export FZF_DEFAULT_OPTS=" \
 # when enter is pressed: open the project in tmux (create session if it doesn't exist) and touch the folder so we are able to sort for last used project the next time
 # when ctrl-w is pressed: create a new window in the project path
 # when ctrl-l, ctrl-h, ctrl-j, ctrl-k is pressed: split the window in the direction and go to the project path
-fd . ~/Dev/workspace ~/Clienti/*/workspace ~/Clienti/*/*/workspace ~/Sbam/workspace -d 1 -t d -x stat --format='%Y %n' {} | \
+fd . ~/Dev/workspace ~/Dev/*/workspace ~/Clienti/*/workspace ~/Clienti/*/*/workspace ~/Sbam/workspace -d 1 -t d -x stat --format='%Y %n' {} | \
     sort -nr | \
     cut -d' ' -f2- | \
     awk -F'/' '{print $0, $NF}' | \
