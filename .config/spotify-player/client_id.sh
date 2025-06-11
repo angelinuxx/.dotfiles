@@ -1,0 +1,1 @@
+echo "$SPOTIFY_CLIENT_ID"
