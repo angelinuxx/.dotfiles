@@ -17,34 +17,13 @@
       "class": "Mailspring"
     },
     {
-      "class": "jetbrains-webstorm",
-      "title": "splash"
-    },
-    {
-      "class": "jetbrains-pycharm",
-      "title": "splash"
-    },
-    {
-      "class": "jetbrains-phpstorm",
-      "title": "splash"
-    },
-    {
-      "class": "Gnome-terminal",
-      "title": "Preferences – Profile “Pop”"
-    },
-    {
-      "class": "Terminator",
-      "title": "Terminator Preferences"
-    },
-    {
-      "class": "Gnome-terminal",
-      "title": "Preferences – General"
-    },
-    {
       "class": "steam"
     },
     {
       "class": "Slack"
+    },
+    {
+      "class": "kChat"
     }
   ],
   "skiptaskbarhidden": [],

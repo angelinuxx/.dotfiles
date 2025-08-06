@@ -112,8 +112,8 @@ alias e="exit"
 alias c="clear"
 alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias python=python3
-alias vim=nvim
-alias vi=nvim
+alias legacyvim='NVIM_APPNAME="nvim-legacy" nvim'
+alias vim='nvim'
 . $HOME/.config/zsh/aliases
 alias aws2="/usr/local/bin/aws"
 
@@ -125,6 +125,8 @@ export PATH
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/.local/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Load nvm and nvm completion
 export NVM_DIR="$HOME/.nvm"
@@ -144,20 +146,15 @@ load-nvmrc() {
 
   if [[ -f .nvmrc && -r .nvmrc ]]; then
 
-    nvm use --silent
+    nvm use --silent &> /dev/null
 
   elif [[ $(nvm version) != $(nvm version default)  ]]; then
 
-    echo "Reverting to nvm default version"
-
-    nvm use default --silent
+    nvm use default --silent &> /dev/null
 
   fi
 
 }
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Exec load nvmrc
 load-nvmrc
@@ -178,3 +175,7 @@ eval "$(zoxide init zsh)"
 
 # Load SBAM sb-cli autocompletion
 . $HOME/.sbam/sb-cli-completion
+# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
