@@ -11,15 +11,17 @@ export FZF_DEFAULT_OPTS=" \
 --color=selected-bg:#45475a \
 --multi"
 
+# TODO: migrate all "code" projects to code folder and add a new command to list projects "data/notes/docs" folders
+
 # use fd to list all first level directories in workspace, return results as "full-path directory" sorted by last used then pipe it to fzf
 # when enter is pressed: open the project in tmux (create session if it doesn't exist) and touch the folder so we are able to sort for last used project the next time
 # when ctrl-w is pressed: create a new window in the project path
 # when ctrl-l, ctrl-h, ctrl-j, ctrl-k is pressed: split the window in the direction and go to the project path
-fd . ~/Dev/workspace ~/Dev/*/workspace ~/Clienti/*/workspace ~/Clienti/*/*/workspace ~/Sbam/workspace -d 1 -t d -x stat --format='%Y %n' {} | \
-    sort -nr | \
-    cut -d' ' -f2- | \
-    awk -F'/' '{print $0, $NF}' | \
-    fzf --header "session: enter | window: ctrl-w | below: ctrl-j | above: ctrl-k | left: ctrl-h | right: ctrl-l" \
+fd . ~/code/work ~/code/personal ~/Dev/workspace ~/Dev/*/workspace ~/Clienti/*/workspace ~/Clienti/*/*/workspace ~/Sbam/workspace -d 1 -t d -x stat --format='%Y %n' {} |
+  sort -nr |
+  cut -d' ' -f2- |
+  awk -F'/' '{print $0, $NF}' |
+  fzf --header "session: enter | window: ctrl-w | below: ctrl-j | above: ctrl-k | left: ctrl-h | right: ctrl-l" \
     --reverse \
     --margin 0% \
     --padding 0% \
@@ -30,4 +32,3 @@ fd . ~/Dev/workspace ~/Dev/*/workspace ~/Clienti/*/workspace ~/Clienti/*/*/works
     --bind='ctrl-h:become(tmux splitw -c {1} -hb)' \
     --bind='ctrl-j:become(tmux splitw -c {1} -v)' \
     --bind='ctrl-k:become(tmux splitw -c {1} -vb)'
-
