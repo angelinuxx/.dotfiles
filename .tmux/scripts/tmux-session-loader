@@ -1,0 +1,92 @@
+#!/bin/bash
+# Requirements: tmux, yq (versione 4+)
+
+PROJECT_PATH="$1"
+# Normalize the project name to be a valid tmux session name
+PROJECT_NAME=$(echo "$2" | sed "s/\./_/g")
+CONFIG_FILE="$PROJECT_PATH/.tmux.config.yml"
+
+# --- YAML Parser Function ---
+setup_from_yaml() {
+  local session_name="$1"
+  local yaml_file="$2"
+
+  # Reads the total number of defined windows
+  local num_windows
+  num_windows=$(yq '.windows | length' "$yaml_file")
+
+  # Iterate over each defined window in the YAML
+  for ((i = 0; i < num_windows; i++)); do
+    # Extracts window name and layout (default: "win-N" and "tiled")
+    local win_name
+    win_name=$(yq -r ".windows[$i].name // \"win-$i\"" "$yaml_file")
+    local win_layout
+    win_layout=$(yq -r ".windows[$i].layout // \"tiled\"" "$yaml_file")
+
+    # The first window (i=0) is created by new-session, so we only rename it.
+    # The subsequent ones are created explicitly.
+    if [ $i -eq 0 ]; then
+      tmux rename-window -t "${session_name}:1" "$win_name"
+    else
+      tmux new-window -t "$session_name" -n "$win_name" -c "$PROJECT_PATH"
+    fi
+
+    # Reads the number of panes for the current window
+    local num_panes
+    num_panes=$(yq ".windows[$i].panes | length" "$yaml_file")
+
+    # Iterates over each pane
+    for ((j = 0; j < num_panes; j++)); do
+      local pane_cmd
+      pane_cmd=$(yq -r ".windows[$i].panes[$j]" "$yaml_file")
+
+      # The first pane (j=0) already exists when creating the window.
+      # For the subsequent ones, we split the window.
+      if [ $j -gt 0 ]; then
+        tmux split-window -t "${session_name}:${win_name}" -c "$PROJECT_PATH"
+        # Reapplies the layout after the split to maintain the desired order
+        tmux select-layout -t "${session_name}:${win_name}" "$win_layout" 2>/dev/null
+      fi
+
+      # Sends the command to the current pane.
+      # We use select-pane -L to ensure we target the last created if necessary,
+      # but usually send-keys goes to the last active by default after a split.
+      tmux send-keys -t "${session_name}:${win_name}" "$pane_cmd" C-m
+    done
+  done
+
+  # Finally, select the first window to start working
+  tmux select-window -t "${session_name}:1"
+}
+
+# --- MAIN ---
+
+# 1. If the session already exists, just attach to it.
+if tmux has-session -t="$PROJECT_NAME" 2>/dev/null; then
+  tmux switchc -t "$PROJECT_NAME"
+else
+  # 2. If it does not exist, CREATE IT (in background)
+  # We always start with a base window in the project directory
+  tmux new -dPs "$PROJECT_NAME" -c "$PROJECT_PATH"
+
+  # 3. INIZIALIZZA la sessione
+  if [ -f "$CONFIG_FILE" ] && command -v yq &>/dev/null; then
+    # Method A: YAML file found
+    setup_from_yaml "$PROJECT_NAME" "$CONFIG_FILE"
+  elif [ -f "$PROJECT_PATH/.tmux-init.sh" ]; then
+    # Method B: Fallback to legacy bash script if present
+    export TMUX_SESSION="$PROJECT_NAME"
+    export PROJECT_PATH="$PROJECT_PATH"
+    bash "$PROJECT_PATH/.tmux-init.sh"
+  fi
+
+  # Connect to session
+  if [ -z "$TMUX" ]; then
+    tmux attach-session -t "$PROJECT_NAME"
+  else
+    tmux switchc -t "$PROJECT_NAME"
+  fi
+fi
+
+# Mark the project as "last used"
+touch "$PROJECT_PATH"

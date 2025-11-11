@@ -95,6 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -114,6 +115,7 @@ alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias python=python3
 alias legacyvim='NVIM_APPNAME="nvim-legacy" nvim'
 alias vim='nvim'
+alias v='nvim'
 . $HOME/.config/zsh/aliases
 alias aws2="/usr/local/bin/aws"
 
@@ -137,7 +139,10 @@ export NVM_DIR="$HOME/.nvm"
 # export OPENAI_API_KEY=$(op read op://Personal/OpenAI/nvim-key --no-newline)
 
 # Git configuration
-export GIT_EDITOR=nvim
+export GIT_EDITOR="nvim"
+
+# GEMINI
+export GOOGLE_GENAI_USE_VERTEXAI=true
 
 autoload -U add-zsh-hook
 

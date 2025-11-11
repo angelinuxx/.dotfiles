@@ -26,9 +26,11 @@ fd . ~/code/work ~/code/personal ~/Dev/workspace ~/Dev/*/workspace ~/Clienti/*/w
     --margin 0% \
     --padding 0% \
     --with-nth=2 \
-    --bind='enter:become(s=$(echo {2} | sed "s/\./_/g"); tmux switchc -t $s || tmux new -dPs $s -c {1} && tmux switchc -t $s;touch {1})' \
+    --bind='enter:become(~/.tmux/scripts/tmux-session-loader {1} {2})' \
     --bind='ctrl-w:become(tmux neww -c {1} -n {2})' \
     --bind='ctrl-l:become(tmux splitw -c {1} -h)' \
     --bind='ctrl-h:become(tmux splitw -c {1} -hb)' \
     --bind='ctrl-j:become(tmux splitw -c {1} -v)' \
     --bind='ctrl-k:become(tmux splitw -c {1} -vb)'
+
+# --bind='enter:become(s=$(echo {2} | sed "s/\./_/g"); tmux switchc -t $s || tmux new -dPs $s -c {1} && tmux switchc -t $s;touch {1})' \
