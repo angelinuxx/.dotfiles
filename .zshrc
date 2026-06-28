@@ -109,15 +109,7 @@ export EDITOR='nvim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias e="exit"
-alias c="clear"
-alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
-alias python=python3
-alias legacyvim='NVIM_APPNAME="nvim-legacy" nvim'
-alias vim='nvim'
-alias v='nvim'
 . $HOME/.config/zsh/aliases
-alias aws2="/usr/local/bin/aws"
 
 # Additional $PATH variables
 path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter' '/home/angelinuxx/.dotnet/tools')
@@ -184,3 +176,13 @@ eval "$(zoxide init zsh)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# opencode
+export PATH=/home/angelinuxx/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/angelinuxx/.bun/_bun" ] && source "/home/angelinuxx/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
