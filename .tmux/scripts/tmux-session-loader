@@ -6,10 +6,42 @@ PROJECT_PATH="$1"
 PROJECT_NAME=$(echo "$2" | sed "s/\./_/g")
 CONFIG_FILE="$PROJECT_PATH/.tmux.config.yml"
 
+# I need to check if the script was called with the --no-config flag,
+# in which case we skip every initialization method (YAML and legacy script).
+NO_CONFIG=false
+[ "$3" == "--no-config" ] && NO_CONFIG=true
+
 # --- YAML Parser Function ---
 setup_from_yaml() {
+  # TODO:
+  # - Add support for pane sizes
+  # - Add support for focused panel
+  # - Add support for maximized panels
   local session_name="$1"
   local yaml_file="$2"
+
+  # Sometimes I need to run some commands before windows and panes creation,
+  # like exporting variables that should be available to the windows
+  # this commands are in the yaml file under the "global" key and are executed one by one
+  local num_global_cmds
+  num_global_cmds=$(yq '.global | length' "$yaml_file")
+  for ((i = 0; i < num_global_cmds; i++)); do
+    local global_cmd
+    global_cmd=$(yq -r ".global[$i]" "$yaml_file")
+
+    # Evaluate locally so expansions like $LD_LIBRARY_PATH resolve.
+    eval "$global_cmd"
+
+    # If it's an export, push it into the session environment so that
+    # every window/pane created afterwards inherits it.
+    if [[ "$global_cmd" =~ ^[[:space:]]*export[[:space:]]+([A-Za-z_][A-Za-z0-9_]*)= ]]; then
+      local var_name="${BASH_REMATCH[1]}"
+      tmux set-environment -t "$session_name" "$var_name" "${!var_name}"
+    fi
+
+    # Replay it in the already-existing first pane.
+    tmux send-keys -t "${session_name}:1" "$global_cmd" C-m
+  done
 
   # Reads the total number of defined windows
   local num_windows
@@ -51,7 +83,12 @@ setup_from_yaml() {
       # Sends the command to the current pane.
       # We use select-pane -L to ensure we target the last created if necessary,
       # but usually send-keys goes to the last active by default after a split.
-      tmux send-keys -t "${session_name}:${win_name}" "$pane_cmd" C-m
+      if [[ "$pane_cmd" == print:* ]]; then
+        local cmd_to_print="${pane_cmd#print:}"
+        tmux send-keys -t "${session_name}:${win_name}" "$cmd_to_print"
+      else
+        tmux send-keys -t "${session_name}:${win_name}" "$pane_cmd" C-m
+      fi
     done
   done
 
@@ -70,10 +107,10 @@ else
   tmux new -dPs "$PROJECT_NAME" -c "$PROJECT_PATH"
 
   # 3. INIZIALIZZA la sessione
-  if [ -f "$CONFIG_FILE" ] && command -v yq &>/dev/null; then
+  if [ "$NO_CONFIG" = false ] && [ -f "$CONFIG_FILE" ] && command -v yq &>/dev/null; then
     # Method A: YAML file found
     setup_from_yaml "$PROJECT_NAME" "$CONFIG_FILE"
-  elif [ -f "$PROJECT_PATH/.tmux-init.sh" ]; then
+  elif [ "$NO_CONFIG" = false ] && [ -f "$PROJECT_PATH/.tmux-init.sh" ]; then
     # Method B: Fallback to legacy bash script if present
     export TMUX_SESSION="$PROJECT_NAME"
     export PROJECT_PATH="$PROJECT_PATH"
