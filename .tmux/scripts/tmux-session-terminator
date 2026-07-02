@@ -1,0 +1,168 @@
+#!/bin/bash
+# Gracefully terminate a tmux session: send Ctrl+C to every pane running a
+# foreground process, wait for them to exit, then kill the session.
+# Requirements: tmux
+#
+# Usage: tmux-session-terminator [session-name] [--wait-only|--force]
+#   session-name  defaults to the current session; dots are normalized to
+#                 underscores like tmux-session-loader does
+#   --wait-only   skip sending Ctrl+C, just wait for panes to become idle
+#                 (used by the "keep waiting" choice of the timeout menu)
+#   --force       skip Ctrl+C and waiting, kill the session immediately
+#                 (used by the "force kill" choice of the timeout menu)
+
+TIMEOUT="${TMUX_TERMINATOR_TIMEOUT:-10}" # seconds to wait before asking what to do
+POLL_INTERVAL=0.5                        # seconds between checks
+
+# Processes that never exit on Ctrl+C (editors, TUIs, pagers) and hold no
+# important work: they get no Ctrl+C, don't block the wait, and are simply
+# killed together with the session.
+# Space-separated override: TMUX_TERMINATOR_KILL_ANYWAY="nvim htop ..."
+read -ra KILL_ANYWAY <<<"${TMUX_TERMINATOR_KILL_ANYWAY:-vim vi nvim less more man lazygit lazydocker htop btop top k9s tig ranger lf nnn yazi ncdu}"
+
+# Protected processes: no Ctrl+C (for ssh it would be forwarded to the remote
+# side) and never killed automatically — they block the wait, so the timeout
+# menu decides their fate.
+# Space-separated override: TMUX_TERMINATOR_PROTECTED="ssh mosh ..."
+read -ra PROTECTED <<<"${TMUX_TERMINATOR_PROTECTED:-ssh}"
+
+SCRIPT_PATH=$(readlink -f "$0")
+
+MODE="full"
+SESSION_RAW=""
+for arg in "$@"; do
+  case "$arg" in
+  --wait-only) MODE="wait-only" ;;
+  --force) MODE="force" ;;
+  *) SESSION_RAW="$arg" ;;
+  esac
+done
+
+# Same normalization used by tmux-session-loader, so a project name coming
+# from list-projects maps directly to its session
+SESSION_NAME="${SESSION_RAW//./_}"
+[ -z "$SESSION_NAME" ] && SESSION_NAME=$(tmux display-message -p '#S' 2>/dev/null)
+
+if [ -z "$SESSION_NAME" ] || ! tmux has-session -t="$SESSION_NAME" 2>/dev/null; then
+  echo "Session '$SESSION_NAME' not found" >&2
+  exit 1
+fi
+
+# A pane is busy when the foreground process group of its tty differs from
+# the pane's root process (the shell): that means a foreground job is running.
+# More reliable than matching #{pane_current_command} against a shell
+# whitelist, since e.g. a running bash script also reports "bash".
+pane_busy() {
+  local pane_pid="$1" tpgid
+  tpgid=$(ps -o tpgid= -p "$pane_pid" 2>/dev/null | tr -d ' ')
+  [ -n "$tpgid" ] && [ "$tpgid" != "$pane_pid" ]
+}
+
+list_contains() {
+  local needle="$1" entry
+  shift
+  for entry in "$@"; do
+    [ "$needle" = "$entry" ] && return 0
+  done
+  return 1
+}
+
+is_kill_anyway() { list_contains "$1" "${KILL_ANYWAY[@]}"; }
+is_protected() { list_contains "$1" "${PROTECTED[@]}"; }
+
+# Prints "pane_id pane_in_mode pane_pid pane_current_command" for every pane of the session
+list_session_panes() {
+  tmux list-panes -s -t "$SESSION_NAME" -F '#{pane_id} #{pane_in_mode} #{pane_pid} #{pane_current_command}' 2>/dev/null
+}
+
+send_interrupt() {
+  local pane_id in_mode pane_pid cmd
+  while read -r pane_id in_mode pane_pid cmd; do
+    pane_busy "$pane_pid" || continue
+    # No Ctrl+C for kill-anyway processes (they wouldn't exit) nor for
+    # protected ones (their fate is decided via the timeout menu)
+    { is_kill_anyway "$cmd" || is_protected "$cmd"; } && continue
+    # Leave copy-mode first, otherwise C-c would be eaten by the mode
+    [ "$in_mode" = "1" ] && tmux send-keys -t "$pane_id" -X cancel
+    tmux send-keys -t "$pane_id" C-c
+  done < <(list_session_panes)
+}
+
+# Succeeds when every pane is back to a plain shell or only runs kill-anyway
+# processes (or the session is gone)
+all_idle() {
+  local pane_id in_mode pane_pid cmd
+  while read -r pane_id in_mode pane_pid cmd; do
+    pane_busy "$pane_pid" && ! is_kill_anyway "$cmd" && return 1
+  done < <(list_session_panes)
+  return 0
+}
+
+wait_for_idle() {
+  local i max_iterations
+  max_iterations=$(awk -v t="$TIMEOUT" -v p="$POLL_INTERVAL" 'BEGIN { print int(t / p) }')
+  for ((i = 0; i < max_iterations; i++)); do
+    all_idle && return 0
+    sleep "$POLL_INTERVAL"
+  done
+  all_idle
+}
+
+# Comma-separated list of the commands still blocking the kill
+survivors() {
+  local pane_id in_mode pane_pid cmd out=""
+  while read -r pane_id in_mode pane_pid cmd; do
+    pane_busy "$pane_pid" && ! is_kill_anyway "$cmd" && out+="${out:+, }$cmd"
+  done < <(list_session_panes)
+  echo "$out"
+}
+
+# Move clients attached to this session to the most recently used other
+# session, so they don't end up detached when the session is killed
+switch_clients_away() {
+  local other client
+  other=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' 2>/dev/null |
+    grep -v " ${SESSION_NAME}$" | sort -nr | head -n1 | cut -d' ' -f2-)
+  [ -z "$other" ] && return
+  while read -r client; do
+    [ -n "$client" ] && tmux switch-client -c "$client" -t "$other"
+  done < <(tmux list-clients -t "$SESSION_NAME" -F '#{client_name}' 2>/dev/null)
+}
+
+kill_session() {
+  switch_clients_away
+  tmux kill-session -t "$SESSION_NAME"
+}
+
+prompt_on_timeout() {
+  local still_running client answer
+  still_running=$(survivors)
+  client=$(tmux list-clients -F '#{client_name}' 2>/dev/null | head -n1)
+  if [ -n "$client" ]; then
+    tmux display-menu -c "$client" -T " $SESSION_NAME still running: $still_running " \
+      "Force kill" k "run-shell -b \"$SCRIPT_PATH $SESSION_NAME --force\"" \
+      "Keep waiting (${TIMEOUT}s)" w "run-shell -b \"$SCRIPT_PATH $SESSION_NAME --wait-only\"" \
+      "Cancel" q ""
+  elif [ -t 0 ]; then
+    read -rp "Session '$SESSION_NAME' is still running: $still_running. Force kill? [y/N] " answer
+    [[ "$answer" =~ ^[Yy]$ ]] && kill_session
+  else
+    echo "Timed out waiting for '$still_running' in session '$SESSION_NAME'; session left alive" >&2
+    exit 1
+  fi
+}
+
+# --- MAIN ---
+
+if [ "$MODE" = "force" ]; then
+  kill_session
+  exit 0
+fi
+
+[ "$MODE" = "full" ] && send_interrupt
+
+if wait_for_idle; then
+  kill_session
+else
+  prompt_on_timeout
+fi
