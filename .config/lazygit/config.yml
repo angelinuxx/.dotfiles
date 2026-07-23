@@ -1,0 +1,60 @@
+gui:
+  timeFormat: "2006-01-02 15:04:05"
+  nerdFontsVersion: "3"
+  theme:
+    cherryPickedCommitFgColor:
+      - "#89b4fb"
+    cherryPickedCommitBgColor:
+      - "#f2cdce"
+    activeBorderColor:
+      - "#fab388"
+      - "bold"
+    unstagedChangesColor:
+      - "#f38ba9"
+    selectedLineBgColor:
+      - "#45475b"
+    searchingActiveBorderColor:
+      - "#fab388"
+      - "bold"
+    optionsTextColor:
+      - "#89b4fb"
+    inactiveBorderColor:
+      - "#89b4fb"
+    defaultFgColor:
+      - "#cdd6f5"
+
+git:
+  # Log panel shown when a branch is selected in "Local branches": one line per commit, graph kept
+  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(auto)%h%d %s %C(cyan)(%cd) %C(bold blue)<%an>%C(reset)' {{branchName}} --"
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+  commit:
+    signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
+  autoFetch: true
+  autoRefresh: true
+  fetchAll: true
+  parseEmoji: false
+  disableForcePushing: false
+  skipHookPrefix: "WIP"
+
+os:
+  editPreset: "nvim"
+  open: "xdg-open {{filename}}"
+  openLink: "xdg-open {{link}}"
+
+update:
+  method: prompt # prompt | background | never
+  days: 14
+
+refresher:
+  refreshInterval: 10 # seconds
+  fetchInterval: 60 # seconds (auto-fetch)
+
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+disableStartupPopups: false
+promptToReturnFromSubprocess: true
+notARepository: "prompt" # prompt | create | skip | quit
