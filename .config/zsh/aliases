@@ -8,9 +8,6 @@ alias lzd='lazydocker'
 alias l='eza --icons=always --group-directories-first -l -a -h'
 alias lg='eza --icons=always --group-directories-first -l -a -h --git'
 
-alias claude-personal='CLAUDE_CONFIG_DIR=~/.claude claude --allow-dangerously-skip-permissions'
-alias claude-otto='CLAUDE_CONFIG_DIR=~/.claude-otto claude --allow-dangerously-skip-permissions'
-
 alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias python=python3
 

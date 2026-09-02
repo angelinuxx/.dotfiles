@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec env CLAUDE_CONFIG_DIR="$HOME/.claude" claude --allow-dangerously-skip-permissions "$@"
