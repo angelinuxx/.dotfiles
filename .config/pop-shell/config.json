@@ -24,6 +24,12 @@
     },
     {
       "class": "kChat"
+    },
+    {
+      "class": "GoSign Desktop"
+    },
+    {
+      "class": "Emote"
     }
   ],
   "skiptaskbarhidden": [],
