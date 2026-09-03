@@ -87,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -112,7 +112,7 @@ export EDITOR='nvim'
 . $HOME/.config/zsh/aliases
 
 # Additional $PATH variables
-path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter' '/home/angelinuxx/.dotnet/tools')
+path+=('/home/angelinuxx/.local/bin' '/home/angelinuxx/.yarn/bin' '/home/angelinuxx/.local/bin/freeter-v2/freeter' '/home/angelinuxx/.dotnet/tools' "$HOME/.cargo/bin")
 
 export PATH
 
@@ -159,7 +159,7 @@ load-nvmrc
 add-zsh-hook chpwd load-nvmrc
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+#source <(ng completion script)
 
 # Load fzf configuration
 [[ ! -f ~/.fzf.zsh ]] || source ~/.fzf.zsh
