@@ -1,0 +1,3 @@
+{
+    (modifiers: [Ctrl, Shift], key: "space"): Spawn("1password --quick-access"),
+}
