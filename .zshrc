@@ -187,5 +187,3 @@ export PATH=/home/angelinuxx/.opencode/bin:$PATH
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-# Flatpak Chromium (the exported wrapper is named after the app ID)
-alias chromium='org.chromium.Chromium'
