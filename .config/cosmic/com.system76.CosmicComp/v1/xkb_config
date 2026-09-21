@@ -3,7 +3,7 @@
     model: "",
     layout: "us",
     variant: "",
-    options: Some("compose:ralt"),
+    options: Some("compose:ralt,caps:escape_shifted_capslock"),
     repeat_delay: 600,
     repeat_rate: 25,
 )
