@@ -22,13 +22,12 @@ gui:
       - "#89b4fb"
     defaultFgColor:
       - "#cdd6f5"
-
 git:
   # Log panel shown when a branch is selected in "Local branches": one line per commit, graph kept
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%C(auto)%h%d %s %C(cyan)(%cd) %C(bold blue)<%an>%C(reset)' {{branchName}} --"
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never
   commit:
     signOff: false
     autoWrapCommitMessage: true
@@ -39,20 +38,16 @@ git:
   parseEmoji: false
   disableForcePushing: false
   skipHookPrefix: "WIP"
-
 os:
   editPreset: "nvim"
   open: "xdg-open {{filename}}"
   openLink: "xdg-open {{link}}"
-
 update:
   method: prompt # prompt | background | never
   days: 14
-
 refresher:
   refreshInterval: 10 # seconds
   fetchInterval: 60 # seconds (auto-fetch)
-
 confirmOnQuit: false
 quitOnTopLevelReturn: false
 disableStartupPopups: false
