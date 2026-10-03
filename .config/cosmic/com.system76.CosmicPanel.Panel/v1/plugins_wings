@@ -2,6 +2,7 @@ Some(([
     "io.github.crocodile.cosmic-ext-applet-workspace-icons",
 ], [
     "io.github.k33wee.clippy-land",
+    "com.lucianosb.CosmicAppletLockKeys",
     "com.system76.CosmicAppletInputSources",
     "com.system76.CosmicAppletStatusArea",
     "com.system76.CosmicAppletA11y",

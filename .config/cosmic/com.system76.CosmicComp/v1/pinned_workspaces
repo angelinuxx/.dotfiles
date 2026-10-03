@@ -1,0 +1,82 @@
+[
+    (
+        output: (
+            name: "DP-4",
+            edid: Some((
+                manufacturer: ('G', 'S', 'M'),
+                product: 23769,
+                serial: Some(7029),
+                manufacture_week: 12,
+                manufacture_year: 2025,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("190c77"),
+        name: None,
+    ),
+    (
+        output: (
+            name: "DP-4",
+            edid: Some((
+                manufacturer: ('G', 'S', 'M'),
+                product: 23769,
+                serial: Some(7029),
+                manufacture_week: 12,
+                manufacture_year: 2025,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("119f043"),
+        name: None,
+    ),
+    (
+        output: (
+            name: "DP-4",
+            edid: Some((
+                manufacturer: ('G', 'S', 'M'),
+                product: 23769,
+                serial: Some(7029),
+                manufacture_week: 12,
+                manufacture_year: 2025,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("be66de"),
+        name: None,
+    ),
+    (
+        output: (
+            name: "DP-4",
+            edid: Some((
+                manufacturer: ('G', 'S', 'M'),
+                product: 23769,
+                serial: Some(7029),
+                manufacture_week: 12,
+                manufacture_year: 2025,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("a691d9"),
+        name: None,
+    ),
+    (
+        output: (
+            name: "DP-4",
+            edid: Some((
+                manufacturer: ('G', 'S', 'M'),
+                product: 23769,
+                serial: Some(7029),
+                manufacture_week: 12,
+                manufacture_year: 2025,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+        id: Some("1c63610"),
+        name: None,
+    ),
+]

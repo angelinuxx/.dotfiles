@@ -1,4 +1,5 @@
 Some([
+    "io.github.angelinuxx.CosmicExtAppletTimer",
     "com.system76.CosmicAppletTime",
     "io.github.cosmic_utils.sysinfo-applet",
 ])
